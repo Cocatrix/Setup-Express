@@ -23,6 +23,13 @@ def _render_page(body_string: str, title: str, key: str) -> str:
         <title>{title}</title>
         <link rel="stylesheet" href="/static/css/base.css">
         <link rel="stylesheet" href="/static/css/{key}.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Cinzel:wght@700&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
     '''
