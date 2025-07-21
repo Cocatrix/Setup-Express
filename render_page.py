@@ -2,6 +2,7 @@ from textwrap import dedent
 
 from strings import (
     SITE_DESC,
+    SITE_NAME,
 )
 
 def _render_page(body_string: str, title: str, key: str) -> str:
@@ -34,3 +35,6 @@ def _render_page(body_string: str, title: str, key: str) -> str:
     '''
 
     return dedent(html_head + body_string + html_foot).strip()
+
+def render_root_page(body_string):
+    return _render_page(body_string, SITE_NAME, "root")
