@@ -1,0 +1,126 @@
+.empty-note {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+}
+
+.box-tile {
+    display: block;
+    width: clamp(100px, 25vw, 300px);
+    height: clamp(100px, 25vw, 300px);
+    margin: 0 auto;
+    background-color: #fff;
+    border: 3px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+    filter: grayscale(100%);
+}
+
+.box-tile:hover,
+.box-tile:focus {
+    transform: scale(1.03);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    outline: none;
+}
+
+.box-tile.selected {
+    border-color: #007acc;
+    box-shadow: 0 6px 14px rgba(0, 122, 204, 0.3);
+    filter: grayscale(0%);
+}
+
+.box-tile img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.box-tile p {
+    margin: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 16px rgba(255, 200, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.7);
+    }
+}
+
+.box-tile.highlight {
+    box-shadow: 0 0 0 4px rgba(255, 200, 0, 0.7),
+                0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    animation: pulse 1s ease-out infinite;
+}
+
+.app-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    position: sticky;
+    top: 1rem;
+    background: #f9f9f9;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    flex-shrink: 0;
+}
+
+.sidebar > h2 {
+    margin-bottom: 0.5rem;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content h1 {
+    margin-bottom: 1rem;
+}
+
+.boxes-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: calc((300px - 180px) + 1rem);
+}
+
+.sidebar .box-tile {
+    display: block;
+    width: 180px;
+    height: 180px;
+    transition: width 0.5s ease, height 0.5s ease;
+    transform-origin: top center;
+}
+
+.sidebar .box-tile:hover {
+    width: 300px;
+    height: 300px;
+    transform: none;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
