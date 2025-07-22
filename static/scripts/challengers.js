@@ -1,4 +1,4 @@
-import { shuffle } from './utils.js';
+import { shuffle, NO_HOVER_TIMEOUT } from './utils.js';
 
 class SetItem {
   constructor(boxKey, key, name, color) {
@@ -132,7 +132,12 @@ async function reloadSet(oldKey) {
 
       cardElem.style.transition = "";
       cardElem.style.transform  = "";
-      resultDiv.classList.remove("no-hover-global");
+      setTimeout(() => {
+        resultDiv.classList.remove("no-hover-global");
+        if (cardElem.matches(':hover')) {
+          cardElem.classList.add('force-hover');
+        }
+      }, NO_HOVER_TIMEOUT);
 
       document
         .querySelector(`.box-tile[data-value="${newSet.boxKey}"]`)

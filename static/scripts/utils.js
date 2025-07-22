@@ -1,3 +1,5 @@
+export const NO_HOVER_TIMEOUT = 500;
+
 export function shuffle(array) {
   const arr = array.slice();
   for (let i = arr.length - 1; i > 0; i--) {
