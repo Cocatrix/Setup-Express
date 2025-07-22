@@ -1,31 +1,29 @@
 .game-tile {
-    width: clamp(50px, 30vw, 400px);
-    height: clamp(50px, 30vw, 400px);
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    cursor: pointer;
-    will-change: transform;
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+  width: clamp(50px, 30vw, 400px);
+  height: clamp(50px, 30vw, 400px);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+  will-change: transform;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .game-tile:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .game-tile:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.7);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.7);
 }
 
 .game-tile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

@@ -1,130 +1,130 @@
 #result {
-    display: flex;
-    justify-content: center;
-    align-self: stretch;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+  width: 100%;
 }
 #result.no-hover-global .set-card:hover .set-content {
-    filter: none !important;
+  filter: none !important;
 }
 #result.no-hover-global .set-card:hover .reload-button {
-    opacity: 0 !important;
-    visibility: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 .challenger-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 1rem;
-    width: 100%;
-    max-width: 20vw;
-    margin: 0 auto;
-    align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 20vw;
+  margin: 0 auto;
+  align-self: stretch;
 }
 .set-card {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border: 3px solid var(--set-col);
-    border-radius: 1rem;
-    background-color: #fff;
-    overflow: hidden;
-    box-sizing: border-box;
-    position: relative;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    transition: transform 0.8s ease;
-    backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 3px solid var(--set-col);
+  border-radius: 1rem;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  backface-visibility: hidden;
 }
 .set-card.flipping {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 .set-content {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex: 1;
-    transition: filter 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  transition: filter 0.3s ease, transform 0.2s ease;
 }
 .set-icon {
-    width: 4rem;
-    height: 4rem;
-    padding: 0.4rem;
-    flex-shrink: 0;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  padding: 0.4rem;
+  flex-shrink: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .set-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 .set-name {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    background-color: var(--set-col);
-    color: #fff;
-    font-family: 'Bebas Neue', serif;
-    font-size: 2.4rem;
-    white-space: nowrap;
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background-color: var(--set-col);
+  color: #fff;
+  font-family: "Bebas Neue", serif;
+  font-size: 2.4rem;
+  white-space: nowrap;
 }
 .reload-button {
-    position: absolute;
-    top: 50%;
-    right: 0.5rem;
-    opacity: 0;
-    visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.85);
-    font-family: sans-serif;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #333;
-    transform: translateY(-50%) rotate(0deg);
-    transition: opacity 0.3s ease, transform 0.4s ease;
-    z-index: 5;
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  font-family: sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  transform: translateY(-50%) rotate(0deg);
+  transition: opacity 0.3s ease, transform 0.4s ease;
+  z-index: 5;
 }
 .set-card:hover .set-content {
-    filter: blur(2px);
+  filter: blur(2px);
 }
 .set-card:hover .reload-button {
-    display: flex;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 .reload-button:hover {
-    transform: translateY(-50%) rotate(360deg);
+  transform: translateY(-50%) rotate(360deg);
 }
 .flip-container {
-    width: 100%;
-    transform-style: preserve-3d;
-    position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  position: relative;
 }
 .card-face {
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .card-face.front {
-    position: relative;
-    transform: rotateY(0deg);
+  position: relative;
+  transform: rotateY(0deg);
 }
 .card-face.back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotateY(180deg);
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+  pointer-events: none;
 }
 .card-face.back .reload-button {
   pointer-events: auto;
