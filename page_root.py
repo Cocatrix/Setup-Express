@@ -4,12 +4,14 @@ from game import (
     Game,
 )
 
+
 def _render_game_tile(game: Game):
-    return f'''
+    return f"""
     <a class="game-tile" href="/{game.key}">
         <img src="{game.cover_image_path}" alt="{game.name}">
     </a>
-    '''
+    """
+
 
 def page_root():
     """
@@ -17,9 +19,9 @@ def page_root():
     """
     tiles = "\n".join(_render_game_tile(game) for game in ALL_GAMES)
 
-    return f'''
+    return f"""
     <h1>{SITE_NAME}</h1>
     <div class="grid">
         {tiles}
     </div>
-    '''
+    """

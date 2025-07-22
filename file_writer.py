@@ -7,6 +7,7 @@ _DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 _cached_keys = None
 
+
 def write_boxes(keys):
     global _cached_keys
     if keys == _cached_keys:

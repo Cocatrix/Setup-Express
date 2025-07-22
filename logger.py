@@ -3,11 +3,13 @@ from typing import List
 
 logger = logging.getLogger(__name__)
 
+
 def info(message: str) -> None:
     """
     Log `message` at INFO level.
     """
     logger.info(message)
+
 
 def log_array(messages: List[str]) -> None:
     """

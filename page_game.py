@@ -1,13 +1,15 @@
 from file_writer import write_boxes
 from strings import NO_BOX_SELECTED, SITE_NAME
 
+
 def _tile(box):
-    return f'''
+    return f"""
     <div class="box-tile" data-value="{box.key}"">
         <img src="{box.cover_image_path}" alt="{box.full_name}">
         <p>{box.box_name}</p>
     </div>
-    '''
+    """
+
 
 def page_game(game, boxes):
     """
@@ -19,7 +21,7 @@ def page_game(game, boxes):
 
     tiles = "\n".join(_tile(box) for box in boxes)
 
-    return f'''
+    return f"""
     <link rel="stylesheet" href="/static/css/game.css">
     <div class="app-layout">
 
@@ -38,4 +40,4 @@ def page_game(game, boxes):
       </main>
 
     </div>
-    '''
+    """

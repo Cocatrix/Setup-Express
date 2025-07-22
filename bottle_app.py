@@ -1,6 +1,6 @@
 import logging
 
-from bottle import ( # type: ignore
+from bottle import (  # type: ignore
     default_app,
     route,
     static_file,
@@ -24,14 +24,17 @@ logging.basicConfig(
 )
 application = default_app()
 
-@route('/static/<filepath:path>')
-def server_static(filepath):
-    return static_file(filepath, root='/home/cocatrix/mysite/static')
 
-@route('/')
+@route("/static/<filepath:path>")
+def server_static(filepath):
+    return static_file(filepath, root="/home/cocatrix/mysite/static")
+
+
+@route("/")
 def route_root():
     return render_root_page(page_root())
 
-@route('/challengers')
+
+@route("/challengers")
 def route_challengers():
     return render_game_page(page_game(CHALLENGERS, CHALLENGERS_BOXES), CHALLENGERS)

@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import List
 
+
 class CoverImageMixin(ABC):
     @property
     def cover_image_path(self) -> str:
@@ -9,8 +10,8 @@ class CoverImageMixin(ABC):
 
     @property
     @abstractmethod
-    def image_name(self) -> str:
-        ...
+    def image_name(self) -> str: ...
+
 
 @dataclass(frozen=True)
 class Game(CoverImageMixin):
@@ -20,6 +21,7 @@ class Game(CoverImageMixin):
     @property
     def image_name(self) -> str:
         return f"{self.key}_core"
+
 
 @dataclass(frozen=True)
 class Box(CoverImageMixin):
@@ -48,6 +50,7 @@ class OriginalBox(Box):
     @property
     def full_name(self) -> str:
         return self.box_name
+
 
 # --- Global variables
 

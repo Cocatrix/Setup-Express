@@ -5,14 +5,15 @@ from strings import (
     SITE_NAME,
 )
 
+
 def _render_page(body_string: str, title: str, key: str) -> str:
     """
     Builds full HTML page, injecting `body_string`
     and loading JS/CSS files named `key`.
     """
-    icon_path = '/static/images/favicon.ico'
+    icon_path = "/static/images/favicon.ico"
 
-    html_head = f'''
+    html_head = f"""
     <!DOCTYPE html>
     <html lang="fr">
     <head>
@@ -32,19 +33,21 @@ def _render_page(body_string: str, title: str, key: str) -> str:
         />
     </head>
     <body>
-    '''
-    
-    html_foot = f'''
+    """
+
+    html_foot = f"""
         <script type="module" src="/static/scripts/utils.js"></script>
         <script type="module" src="/static/scripts/{key}.js"></script>
     </body>
     </html>
-    '''
+    """
 
     return dedent(html_head + body_string + html_foot).strip()
 
+
 def render_root_page(body_string):
     return _render_page(body_string, SITE_NAME, "root")
+
 
 def render_game_page(body_string, game):
     return _render_page(body_string, f"{SITE_NAME}: {game.name}", game.key)
