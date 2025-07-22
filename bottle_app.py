@@ -1,3 +1,5 @@
+import logging
+
 from bottle import ( # type: ignore
     default_app,
     route,
@@ -7,6 +9,11 @@ from bottle import ( # type: ignore
 from page_root import page_root
 from render_page import render_root_page
 
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s %(name)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 application = default_app()
 
 @route('/static/<filepath:path>')
