@@ -30,3 +30,7 @@ h2,
 .sidebar h2 {
     font-family: 'Cinzel', serif;
 }
+
+html {
+  overflow-y: scroll; /* Always reserve space for scroll bar */
+}
