@@ -27,7 +27,7 @@ def _render_page(body_string: str, title: str, key: str) -> str:
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Cinzel:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500&family=Cinzel:wght@700&display=swap"
             rel="stylesheet"
         />
     </head>
@@ -35,8 +35,8 @@ def _render_page(body_string: str, title: str, key: str) -> str:
     '''
     
     html_foot = f'''
-        <script src="/static/scripts/utils.js"></script>
-        <script src="/static/scripts/{key}.js"></script>
+        <script type="module" src="/static/scripts/utils.js"></script>
+        <script type="module" src="/static/scripts/{key}.js"></script>
     </body>
     </html>
     '''
@@ -45,3 +45,6 @@ def _render_page(body_string: str, title: str, key: str) -> str:
 
 def render_root_page(body_string):
     return _render_page(body_string, SITE_NAME, "root")
+
+def render_game_page(body_string, game):
+    return _render_page(body_string, f"{SITE_NAME}: {game.name}", game.key)

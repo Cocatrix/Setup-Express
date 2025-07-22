@@ -1,3 +1,4 @@
+NO_BOX_SELECTED = "Aucune boîte sélectionnée."
 SITE_DESC = (
     "Setup Express est un randomizer fait maison :"
     " il choisit des sets/familles/cartes aléatoires, parmi les choix"
