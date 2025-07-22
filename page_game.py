@@ -1,3 +1,4 @@
+from file_writer import write_boxes
 from strings import NO_BOX_SELECTED, SITE_NAME
 
 def _tile(box):
@@ -13,6 +14,9 @@ def page_game(game, boxes):
     Return root HTML sidebar (a column with all boxes)
     and a `result` fillable div.
     """
+    keys = [box.key for box in boxes]
+    write_boxes(keys)
+
     tiles = "\n".join(_tile(box) for box in boxes)
 
     return f'''
