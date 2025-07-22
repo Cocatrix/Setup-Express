@@ -22,6 +22,22 @@ function shuffleAndPickSets(sets, count) {
   return shuffle(sets).slice(0, count);
 }
 
+function renderCardFace(set) {
+  return `
+    <button class="reload-button" aria-label="Relancer">⟳</button>
+    <div class="set-content">
+      <div class="set-icon">
+        <img
+          src="/static/images/challengers/${set.boxKey}/${set.key}.jpg"
+          alt="${set.name}"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <div class="set-name">${set.name}</div>
+    </div>
+  `;
+}
+
 function renderSetCard(set) {
   return `
     <div
@@ -33,16 +49,13 @@ function renderSetCard(set) {
       aria-label="${set.name}"
       style="--set-col: ${set.color}; background-color: var(--set-col); border-color: var(--set-col);"
     >
-      <button class="reload-button" aria-label="Relancer">⟳</button>
-      <div class="set-content">
-        <div class="set-icon">
-          <img
-            src="/static/images/challengers/${set.boxKey}/${set.key}.jpg"
-            alt="${set.name}"
-            onerror="this.style.display='none'"
-          />
+      <div class="flip-container">
+        <div class="card-face front">
+          ${renderCardFace(set)}
         </div>
-        <div class="set-name">${set.name}</div>
+        <div class="card-face back" aria-hidden="true">
+          ${renderCardFace(set)}
+        </div>
       </div>
     </div>
   `;
@@ -77,17 +90,55 @@ function updateResult() {
   renderList();
 }
 
-function reloadSet(oldKey) {
+async function reloadSet(oldKey) {
+  console.log("reloadSet called for", oldKey);
   const idx = selectedSets.findIndex(s => s.key === oldKey);
   if (idx === -1) return;
 
   const excluded = selectedSets.map(s => s.key);
-  const options = availableSets.filter(s => !excluded.includes(s.key));
+  const options  = availableSets.filter(s => !excluded.includes(s.key));
   if (options.length === 0) return;
 
-  selectedSets[idx] = options[Math.floor(Math.random() * options.length)];
+  const newSet    = options[Math.floor(Math.random() * options.length)];
+  const cardElem  = document.querySelector(`.set-card[data-key="${oldKey}"]`);
+  const resultDiv = document.getElementById("result");
+
   clearHighlights();
-  renderList();
+  resultDiv.classList.add("no-hover-global");
+
+  cardElem.style.transition = "transform 0.4s ease";
+  cardElem.style.transform  = "rotateX(90deg)";
+
+  cardElem.addEventListener("transitionend", function onHalf(e) {
+    if (e.propertyName !== "transform") return;
+    cardElem.removeEventListener("transitionend", onHalf);
+
+    selectedSets[idx] = newSet;
+    cardElem.style.setProperty("--set-col", newSet.color);
+    cardElem.dataset.boxKey = newSet.boxKey;
+    cardElem.dataset.key    = newSet.key;
+
+    const front = cardElem.querySelector(".card-face.front");
+    const back  = cardElem.querySelector(".card-face.back");
+    front.innerHTML = renderCardFace(newSet);
+    back.innerHTML  = renderCardFace(newSet);
+
+    cardElem.style.transition = "transform 0.4s ease";
+    cardElem.style.transform  = "rotateX(180deg)";
+
+    cardElem.addEventListener("transitionend", function onEnd(e2) {
+      if (e2.propertyName !== "transform") return;
+      cardElem.removeEventListener("transitionend", onEnd);
+
+      cardElem.style.transition = "";
+      cardElem.style.transform  = "";
+      resultDiv.classList.remove("no-hover-global");
+
+      document
+        .querySelector(`.box-tile[data-value="${newSet.boxKey}"]`)
+        ?.classList.add("highlight");
+    });
+  });
 }
 
 function initEventDelegation() {
@@ -106,7 +157,10 @@ function initEventDelegation() {
     }
   });
 
+  const resultDiv = document.getElementById('result');
+
   document.body.addEventListener('mouseover', event => {
+    if (resultDiv.classList.contains('no-hover-global')) return;
     const card = event.target.closest('.set-card');
     if (card) {
       const tile = document.querySelector(`.box-tile[data-value="${card.dataset.boxKey}"]`);
@@ -115,6 +169,7 @@ function initEventDelegation() {
   });
 
   document.body.addEventListener('mouseout', event => {
+    if (resultDiv.classList.contains('no-hover-global')) return;
     const card = event.target.closest('.set-card');
     if (card) {
       const tile = document.querySelector(`.box-tile[data-value="${card.dataset.boxKey}"]`);
@@ -123,10 +178,10 @@ function initEventDelegation() {
   });
 }
 
-function clearHighlights() {  
-  document  
-    .querySelectorAll('.box-tile.highlight')  
-    .forEach(tile => tile.classList.remove('highlight'));  
+function clearHighlights() {
+  document
+    .querySelectorAll('.box-tile.highlight')
+    .forEach(tile => tile.classList.remove('highlight'));
 }
 
 async function fetchBoxKeys() {
