@@ -1,0 +1,191 @@
+[
+  {
+    "boxKey": "aeonsend_core",
+    "key": "agregat_de_diamants",
+    "name": "Agrégat de diamants",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "ambre_de_v_risbois",
+    "name": "Ambre de V'risbois",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "jade",
+    "name": "Jade",
+    "type": "gem",
+    "cost": 2
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "opale_brulante",
+    "name": "Opale brûlante",
+    "type": "gem",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "perle_filtrante",
+    "name": "Perle filtrante",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "rubis_fulgurant",
+    "name": "Rubis fulgurant",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "saphir_nuageux",
+    "name": "Saphir nuageux",
+    "type": "gem",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "baton_d_explosion",
+    "name": "Bâton d'explosion",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "dague_flechissante",
+    "name": "Dague fléchissante",
+    "type": "relic",
+    "cost": 2
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "orbe_de_stabilisation",
+    "name": "Orbe de stabilisation",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "prisme_instable",
+    "name": "Prisme instable",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "talisman_de_mage",
+    "name": "Talisman de mage",
+    "type": "relic",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "vortex_en_bouteille",
+    "name": "Vortex en bouteille",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "flamme-du-phenix",
+    "name": "Flamme du phénix",
+    "type": "spell",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "echo-spectral",
+    "name": "Écho spectral",
+    "type": "spell",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "vision_amplifiee",
+    "name": "Vision amplifiée",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "mise_a_feu",
+    "name": "Mise à feu",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "tentacule_de_lave",
+    "name": "Tentacule de lave",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "feu_obscur",
+    "name": "Feu obscur",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "vol_d_essence",
+    "name": "Vol d'essence",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "eclair_enrage",
+    "name": "Éclair enragé",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "vague_d_oubli",
+    "name": "Vague d'oubli",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "arc_chaotique",
+    "name": "Arc chaotique",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "apercu_planaire",
+    "name": "Aperçu planaire",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "fouet_ardent",
+    "name": "Fouet ardent",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "nexus_des_arcanes",
+    "name": "Nexus des arcanes",
+    "type": "spell",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_core",
+    "key": "vide_devorant",
+    "name": "Vide dévorant",
+    "type": "spell",
+    "cost": 7
+  }
+]

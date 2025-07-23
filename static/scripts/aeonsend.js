@@ -1,164 +1,36 @@
-const AEONSEND_CORE = "aeonsend_core";
-const AEONSEND_PARIAS = "aeonsend_parias";
+import { fetchAeonsendData } from "../model/aeonsend_model.js";
 
-const CardType = {
-  GEM: "gem",
-  RELIC: "relic",
-  SPELL: "spell",
-};
+// Private variables
 
-class Card {
-  constructor(boxKey, key, name, type, cost, image) {
-    this.boxKey = boxKey;
-    this.key = key;
-    this.name = name;
-    this.type = type;
-    this.cost = cost;
-  }
-  get imageUrl() {
-    return `static/images/aeonsend/${this.boxKey}/${this.type}s/${this.key}.webp`;
-  }
-}
-
-let coreCards = [
-  new Card(
-    AEONSEND_CORE,
-    "agregat_de_diamants",
-    "Agrégat de diamants",
-    CardType.GEM,
-    4
-  ),
-  new Card(
-    AEONSEND_CORE,
-    "ambre_de_v_risbois",
-    "Ambre de V'risbois",
-    CardType.GEM,
-    3
-  ),
-  new Card(AEONSEND_CORE, "jade", "Jade", CardType.GEM, 2),
-  new Card(AEONSEND_CORE, "opale_brulante", "Opale brûlante", CardType.GEM, 5),
-  new Card(
-    AEONSEND_CORE,
-    "perle_filtrante",
-    "Perle filtrante",
-    CardType.GEM,
-    3
-  ),
-  new Card(
-    AEONSEND_CORE,
-    "rubis_fulgurant",
-    "Rubis fulgurant",
-    CardType.GEM,
-    4
-  ),
-  new Card(AEONSEND_CORE, "saphir_nuageux", "Saphir nuageux", CardType.GEM, 6),
-
-  new Card(
-    AEONSEND_CORE,
-    "baton_d_explosion",
-    "Bâton d'explosion",
-    CardType.RELIC,
-    4
-  ),
-  new Card(
-    AEONSEND_CORE,
-    "dague_flechissante",
-    "Dague fléchissante",
-    CardType.RELIC,
-    2
-  ),
-  new Card(
-    AEONSEND_CORE,
-    "orbe_de_stabilisation",
-    "Orbe de stabilisation",
-    CardType.RELIC,
-    4
-  ),
-  new Card(
-    AEONSEND_CORE,
-    "prisme_instable",
-    "Prisme instable",
-    CardType.RELIC,
-    3
-  ),
-  new Card(
-    AEONSEND_CORE,
-    "talisman_de_mage",
-    "Talisman de mage",
-    CardType.RELIC,
-    5
-  ),
-  new Card(
-    AEONSEND_CORE,
-    "vortex_en_bouteille",
-    "Vortex en bouteille",
-    CardType.RELIC,
-    3
-  ),
-
-  new Card(
-    AEONSEND_CORE,
-    "flamme-du-phenix",
-    "Flamme du phénix",
-    CardType.SPELL,
-    3
-  ),
-  new Card(AEONSEND_CORE, "echo-spectral", "Écho spectral", CardType.SPELL, 3),
-  new Card(
-    AEONSEND_CORE,
-    "vision_amplifiee",
-    "Vision amplifiée",
-    CardType.SPELL,
-    4
-  ),
-  new Card(AEONSEND_CORE, "mise_a_feu", "Mise à feu", CardType.SPELL, 4),
-  new Card(
-    AEONSEND_CORE,
-    "tentacule_de_lave",
-    "Tentacule de lave",
-    CardType.SPELL,
-    4
-  ),
-  new Card(AEONSEND_CORE, "feu_obscur", "Feu obscur", CardType.SPELL, 5),
-  new Card(AEONSEND_CORE, "vol_d_essence", "Vol d'essence", CardType.SPELL, 5),
-  new Card(AEONSEND_CORE, "eclair_enrage", "Éclair enragé", CardType.SPELL, 5),
-  new Card(AEONSEND_CORE, "vague_d_oubli", "Vague d'oubli", CardType.SPELL, 5),
-  new Card(AEONSEND_CORE, "arc_chaotique", "Arc chaotique", CardType.SPELL, 6),
-  new Card(
-    AEONSEND_CORE,
-    "apercu_planaire",
-    "Aperçu planaire",
-    CardType.SPELL,
-    6
-  ),
-  new Card(AEONSEND_CORE, "fouet_ardent", "Fouet ardent", CardType.SPELL, 6),
-  new Card(
-    AEONSEND_CORE,
-    "nexus_des_arcanes",
-    "Nexus des arcanes",
-    CardType.SPELL,
-    7
-  ),
-  new Card(AEONSEND_CORE, "vide_devorant", "Vidé dévorant", CardType.SPELL, 7),
-];
-
-let boxToCards = {
-  [AEONSEND_CORE]: coreCards,
-  // "parias": [...],
-};
-
-let availableCards = [];
-let selectedCards = {
+let cardsFromAllBoxes = [];
+let cardsFromSelectedBoxes = [];
+let cardsRandomlyPicked = {
   gem: [],
   relic: [],
   spell: [],
 };
 
+// Page init
+
+if (document.readyState !== "loading") {
+  initAll();
+} else {
+  document.addEventListener("DOMContentLoaded", initAll);
+}
+
+async function initAll() {
+  initBoxDelegation();
+  initCardDelegation();
+  cardsFromAllBoxes = await fetchAeonsendData();
+  updateResult();
+}
+
 function initBoxDelegation() {
   document.body.addEventListener("click", (event) => {
     const tile = event.target.closest(".box-tile");
     if (tile) {
-      toggleBox(tile);
+      tile.classList.toggle("selected");
+      updateResult();
     }
   });
 }
@@ -172,22 +44,7 @@ function initCardDelegation() {
   });
 }
 
-function toggleBox(tile) {
-  tile.classList.toggle("selected");
-  updateResult();
-}
-
-function getCardsFromBoxes(selectedBoxes) {
-  return selectedBoxes.flatMap((box) => boxToCards[box] || []);
-}
-
-function shuffleAndPick(cards, count, type) {
-  return cards
-    .filter((c) => c.type === type)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, count)
-    .sort((a, b) => a.cost - b.cost);
-}
+// UI updating
 
 function updateResult() {
   const selectedTiles = document.querySelectorAll(".box-tile.selected");
@@ -200,12 +57,14 @@ function updateResult() {
     return;
   }
 
-  availableCards = getCardsFromBoxes(selectedValues);
+  cardsFromSelectedBoxes = cardsFromAllBoxes.filter((card) =>
+    selectedValues.includes(card.boxKey)
+  );
 
   const usedKeys = new Set();
 
   function pick(type, count) {
-    const options = availableCards.filter(
+    const options = cardsFromSelectedBoxes.filter(
       (c) => c.type === type && !usedKeys.has(c.key)
     );
     const shuffled = options.sort(() => 0.5 - Math.random()).slice(0, count);
@@ -213,14 +72,14 @@ function updateResult() {
     return shuffled.sort((a, b) => a.cost - b.cost);
   }
 
-  selectedCards.gem = pick("gem", 3);
-  selectedCards.relic = pick("relic", 2);
-  selectedCards.spell = pick("spell", 4);
+  cardsRandomlyPicked.gem = pick("gem", 3);
+  cardsRandomlyPicked.relic = pick("relic", 2);
+  cardsRandomlyPicked.spell = pick("spell", 4);
 
   if (
-    selectedCards.gem.length < 3 ||
-    selectedCards.relic.length < 2 ||
-    selectedCards.spell.length < 4
+    cardsRandomlyPicked.gem.length < 3 ||
+    cardsRandomlyPicked.relic.length < 2 ||
+    cardsRandomlyPicked.spell.length < 4
   ) {
     resultDiv.innerHTML = `<p class="empty-note">Pas assez de cartes disponibles.</p>`;
     return;
@@ -237,17 +96,19 @@ function reloadCard(button) {
     : cardTile.querySelector(".card-label").classList.contains("relic")
     ? "relic"
     : "spell";
-  const currentList = selectedCards[type];
+  const currentList = cardsRandomlyPicked[type];
   const idx = currentList.findIndex((c) => c.key === clickedKey);
   if (idx === -1) return;
 
   // 1) pioche
   const usedKeys = new Set(
-    [...selectedCards.gem, ...selectedCards.relic, ...selectedCards.spell].map(
-      (c) => c.key
-    )
+    [
+      ...cardsRandomlyPicked.gem,
+      ...cardsRandomlyPicked.relic,
+      ...cardsRandomlyPicked.spell,
+    ].map((c) => c.key)
   );
-  const options = availableCards.filter(
+  const options = cardsFromSelectedBoxes.filter(
     (c) => c.type === type && !usedKeys.has(c.key)
   );
   if (!options.length) return;
@@ -314,9 +175,9 @@ function renderGrid() {
   const resultDiv = document.getElementById("result");
 
   const all = [
-    ...selectedCards.gem,
-    ...selectedCards.relic,
-    ...selectedCards.spell,
+    ...cardsRandomlyPicked.gem,
+    ...cardsRandomlyPicked.relic,
+    ...cardsRandomlyPicked.spell,
   ];
 
   resultDiv.innerHTML = `
@@ -342,16 +203,4 @@ function renderCardTile(card) {
             </div>
         </div>
     `;
-}
-
-if (document.readyState !== "loading") {
-  initBoxDelegation();
-  initCardDelegation();
-  updateResult();
-} else {
-  document.addEventListener("DOMContentLoaded", () => {
-    initBoxDelegation();
-    initCardDelegation();
-    updateResult();
-  });
 }
