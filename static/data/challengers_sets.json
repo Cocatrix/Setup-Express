@@ -1,0 +1,112 @@
+[
+  {
+    "boxKey": "challengers_core",
+    "key": "chateau",
+    "name": "Château",
+    "color": "#3f88bf"
+  },
+  {
+    "boxKey": "challengers_core",
+    "key": "fete",
+    "name": "Fête foraine",
+    "color": "#f7b322"
+  },
+  {
+    "boxKey": "challengers_core",
+    "key": "espace",
+    "name": "Espace",
+    "color": "#d93d3f"
+  },
+  {
+    "boxKey": "challengers_core",
+    "key": "studio",
+    "name": "Studio de film",
+    "color": "#72a145"
+  },
+  {
+    "boxKey": "challengers_core",
+    "key": "maison_hantee",
+    "name": "Maison hantée",
+    "color": "#f0822e"
+  },
+  {
+    "boxKey": "challengers_core",
+    "key": "marins",
+    "name": "Marins",
+    "color": "#8b3188"
+  },
+
+  {
+    "boxKey": "challengers_beach",
+    "key": "foret",
+    "name": "Forêt enchantée",
+    "color": "#126b53"
+  },
+  {
+    "boxKey": "challengers_beach",
+    "key": "jouets",
+    "name": "Magasin de jouets",
+    "color": "#c0d83c"
+  },
+  {
+    "boxKey": "challengers_beach",
+    "key": "montagne",
+    "name": "Montagne",
+    "color": "#534b96"
+  },
+  {
+    "boxKey": "challengers_beach",
+    "key": "base_secrete",
+    "name": "Base secrète",
+    "color": "#ec088c"
+  },
+  {
+    "boxKey": "challengers_beach",
+    "key": "universite",
+    "name": "Université",
+    "color": "#633023"
+  },
+  {
+    "boxKey": "challengers_beach",
+    "key": "club_plage",
+    "name": "Club de plage",
+    "color": "#23a9a8"
+  },
+
+  {
+    "boxKey": "challengers_rumble",
+    "key": "wwe",
+    "name": "WWE",
+    "color": "#3a3a3a"
+  },
+  {
+    "boxKey": "challengers_rumble",
+    "key": "urban",
+    "name": "Urban Rivals",
+    "color": "#be4113"
+  },
+  {
+    "boxKey": "challengers_rumble",
+    "key": "artistes",
+    "name": "Artistes",
+    "color": "#582fff"
+  },
+  {
+    "boxKey": "challengers_rumble",
+    "key": "dinosaures",
+    "name": "Dinosaures",
+    "color": "#7f8c2c"
+  },
+  {
+    "boxKey": "challengers_rumble",
+    "key": "pokemon",
+    "name": "Pokémon",
+    "color": "#ae0e65"
+  },
+  {
+    "boxKey": "challengers_rumble",
+    "key": "fun",
+    "name": "Fun",
+    "color": "#ffbf00"
+  }
+]
