@@ -19,7 +19,6 @@ def page_game(game, boxes):
     tiles = "\n".join(_tile(box) for box in boxes)
 
     return f"""
-    <link rel="stylesheet" href="/static/css/game.css">
     <div class="app-layout">
 
       <aside class="sidebar">
