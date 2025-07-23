@@ -156,13 +156,11 @@ async function reloadSet(oldKey) {
       setTimeout(() => {
         resultDiv.classList.remove("no-hover-global");
         if (cardElem.matches(":hover")) {
-          cardElem.classList.add("force-hover");
+          document
+            .querySelector(`.box-tile[data-value="${newSet.boxKey}"]`)
+            ?.classList.add("highlight");
         }
       }, NO_HOVER_TIMEOUT);
-
-      document
-        .querySelector(`.box-tile[data-value="${newSet.boxKey}"]`)
-        ?.classList.add("highlight");
     });
   });
 }
