@@ -1,3 +1,5 @@
+import { fetchMessages } from "../model/messages_model.js";
+
 class Card {
   constructor(boxKey, key, name, type, cost) {
     this.boxKey = boxKey;
@@ -12,8 +14,9 @@ class Card {
 }
 
 export async function fetchAeonsendData() {
+  const messages = await fetchMessages().catch(() => ({}));
   const res = await fetch("/static/data/aeonsend_cards.json");
-  if (!res.ok) throw new Error("Impossible de charger les cartes Aeon's End"); // Tester
+  if (!res.ok) throw new Error(messages.cannot_load_cards);
   const data = await res.json();
   return data.map(
     ({ boxKey, key, name, type, cost }) =>
