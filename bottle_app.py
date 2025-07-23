@@ -7,6 +7,8 @@ from bottle import (  # type: ignore
 )
 
 from game import (
+    AEONSEND,
+    AEONSEND_BOXES,
     CHALLENGERS,
     CHALLENGERS_BOXES,
 )
@@ -38,3 +40,8 @@ def route_root():
 @route("/challengers")
 def route_challengers():
     return render_game_page(page_game(CHALLENGERS, CHALLENGERS_BOXES), CHALLENGERS)
+
+
+@route("/aeonsend")
+def route_aeonsend():
+    return render_game_page(page_game(AEONSEND, AEONSEND_BOXES), AEONSEND)

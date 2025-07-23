@@ -1,0 +1,231 @@
+.aeon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card-tile {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  max-width: 200px;
+  aspect-ratio: 63 / 88;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+  perspective: 1000px;
+}
+
+.card-tile img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* Effet de zoom au survol */
+.card-tile:hover {
+  transform: scale(1.03);
+}
+
+/* Bloque le hover quand la carte a été rechargée */
+.card-tile.disabled-hover:hover {
+  transform: none;
+}
+
+.card-tile.disabled-hover:hover img {
+  filter: none;
+}
+
+.card-tile.disabled-hover:hover .card-label {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-tile.disabled-hover:hover .reload-button {
+  display: none;
+}
+
+/* Appliquer niveau de gris + flou au hover sur l’image */
+.card-tile:hover img {
+  filter: grayscale(100%) blur(2px);
+}
+
+/* Afficher uniquement le label au hover */
+.card-label {
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-tile:hover .card-label {
+  display: flex;
+}
+
+.card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 45%;
+  padding: 0.8rem 0.6rem 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  font-family: "Cinzel", serif;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+
+  clip-path: ellipse(100% 30% at 50% 53%);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.card-tile:hover .card-label {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Couleurs selon type */
+.card-label.gem {
+  background: linear-gradient(
+    90deg,
+    rgba(180, 120, 255, 0.8) 0%,
+    rgba(252, 252, 252, 0.8) 50%,
+    rgba(180, 120, 255, 0.8) 100%
+  );
+}
+
+.card-label.relic {
+  background: linear-gradient(
+    90deg,
+    rgba(120, 200, 255, 0.8) 0%,
+    rgba(252, 252, 252, 0.8) 50%,
+    rgba(120, 200, 255, 0.8) 100%
+  );
+}
+
+.card-label.spell {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 220, 100, 0.8) 0%,
+    rgba(252, 252, 252, 0.8) 50%,
+    rgba(255, 220, 100, 0.8) 100%
+  );
+}
+
+.reload-button {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+
+  /*width: 3rem;*/
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+  font-size: 2.3rem;
+  font-weight: bold;
+  /*line-height: 1;*/
+  color: #333;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+
+  /* On cache via opacité plutôt que display:none */
+  opacity: 0;
+  /* On fait aussi une transition sur l’opacité pour le fondu */
+  transition: opacity 0.3s ease, transform 0.4s ease, background 0.3s ease;
+}
+
+.reload-button:hover {
+  transform: translate(-50%, -50%) rotate(360deg);
+  background: rgba(255, 255, 255, 1);
+}
+
+.card-tile:hover .reload-button {
+  display: flex;
+  opacity: 1;
+}
+
+.flip-container {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1.3s;
+  position: relative;
+  backface-visibility: hidden;
+}
+
+.card-tile.flipping .flip-container {
+  transform: rotateY(180deg);
+  pointer-events: none; /* désactive le hover et les clics */
+}
+
+.card-tile.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.group.fade-in .card-tile {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.card-face {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+#result.no-hover-global .card-tile:hover {
+  transform: none;
+}
+
+#result.no-hover-global .card-tile:hover img {
+  filter: none;
+}
+
+#result.no-hover-global .card-tile:hover .card-label {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#result.no-hover-global .card-tile:hover .reload-button {
+  display: none;
+}
