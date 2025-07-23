@@ -62,5 +62,5 @@ def render_game_page(body_string: str, game: Game):
         body_string,
         f"{SITE_NAME}: {game.name}",
         ["base", "game", game.key],
-        [game.key],
+        ["game_engine", game.key],
     )

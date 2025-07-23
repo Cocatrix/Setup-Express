@@ -1,193 +1,124 @@
+import { GameEngine } from "./game_engine.js";
 import { fetchAeonsendData } from "../model/aeonsend_model.js";
-import { fetchMessages } from "../model/messages_model.js";
 
-// Private variables
-
-let cardsFromAllBoxes;
-let cardsFromSelectedBoxes;
-let cardsRandomlyPicked = {
-  gem: [],
-  relic: [],
-  spell: [],
-};
-let messages;
-
-// Page init
-
-if (document.readyState !== "loading") {
-  initAll();
-} else {
-  document.addEventListener("DOMContentLoaded", initAll);
-}
-
-async function initAll() {
-  messages = await fetchMessages().catch(() => ({}));
-  initBoxDelegation();
-  initCardDelegation();
-  cardsFromAllBoxes = await fetchAeonsendData();
-  updateResult();
-}
-
-function initBoxDelegation() {
-  document.body.addEventListener("click", (event) => {
-    const tile = event.target.closest(".box-tile");
-    if (tile) {
-      tile.classList.toggle("selected");
-      updateResult();
-    }
-  });
-}
-
-function initCardDelegation() {
-  document.body.addEventListener("click", (event) => {
-    const btn = event.target.closest(".reload-button");
-    if (!btn) return;
-    event.stopPropagation();
-    reloadCard(btn);
-  });
-}
-
-// UI updating
-
-function updateResult() {
-  const selectedTiles = document.querySelectorAll(".box-tile.selected");
-  const selectedValues = Array.from(selectedTiles).map((t) => t.dataset.value);
-  const resultDiv = document.getElementById("result");
-
-  if (selectedValues.length === 0) {
-    resultDiv.innerHTML = `<p class="empty-note">${messages.no_box_selected}</p>`;
-    return;
+export class AeonsendEngine extends GameEngine {
+  constructor() {
+    super({
+      boxSelector: ".box-tile",
+      resultSelector: "#result",
+      minItems: null, // on gère gem/relic/spell séparément
+      pickers: { gem: 3, relic: 2, spell: 4 },
+    });
   }
 
-  cardsFromSelectedBoxes = cardsFromAllBoxes.filter((card) =>
-    selectedValues.includes(card.boxKey)
-  );
+  async fetchData() {
+    const data = await fetchAeonsendData();
+    // on peut stocker tout en this.allItems
+    return data;
+  }
 
-  const usedKeys = new Set();
+  renderGrid() {
+    this.selectedItems = ["gem", "relic", "spell"].flatMap((type) =>
+      this.selectedItems
+        .filter((item) => item.type === type)
+        .slice()
+        .sort((a, b) => a.cost - b.cost)
+    );
+    this.resultEl.innerHTML = `
+      <div class="aeon-grid">
+        ${this.selectedItems.map(renderCardTile).join("")}
+      </div>
+    `;
+  }
 
-  function pick(type, count) {
-    const options = cardsFromSelectedBoxes.filter(
+  reloadItem(button) {
+    const cardTile = button.closest(".card-tile");
+    const clickedKey = cardTile.dataset.key;
+    const type = cardTile.querySelector(".card-label").classList.contains("gem")
+      ? "gem"
+      : cardTile.querySelector(".card-label").classList.contains("relic")
+      ? "relic"
+      : "spell";
+
+    const idx = this.selectedItems.findIndex((c) => c.key === clickedKey);
+    if (idx === -1) return;
+
+    const selectedKeys = Array.from(
+      document.querySelectorAll(this.boxSelector + ".selected")
+    ).map((el) => el.dataset.value);
+    const pool = this.getPool(selectedKeys);
+
+    const usedKeys = new Set(this.selectedItems.map((c) => c.key));
+
+    const sameTypeCards = pool.filter(
       (c) => c.type === type && !usedKeys.has(c.key)
     );
-    const shuffled = options.sort(() => 0.5 - Math.random()).slice(0, count);
-    shuffled.forEach((c) => usedKeys.add(c.key));
-    return shuffled.sort((a, b) => a.cost - b.cost);
-  }
+    if (sameTypeCards.length === 0) return;
+    const newItem =
+      sameTypeCards[Math.floor(Math.random() * sameTypeCards.length)];
 
-  cardsRandomlyPicked.gem = pick("gem", 3);
-  cardsRandomlyPicked.relic = pick("relic", 2);
-  cardsRandomlyPicked.spell = pick("spell", 4);
+    const back = cardTile.querySelector(".card-back");
+    back.querySelector("img").src = newItem.imageUrl;
+    back.querySelector("img").alt = newItem.name;
+    const backLabel = back.querySelector(".card-label");
+    backLabel.textContent = newItem.name;
+    backLabel.className = `card-label ${newItem.type}`;
 
-  if (
-    cardsRandomlyPicked.gem.length < 3 ||
-    cardsRandomlyPicked.relic.length < 2 ||
-    cardsRandomlyPicked.spell.length < 4
-  ) {
-    resultDiv.innerHTML = `<p class="empty-note">${messages.not_enough_cards}</p>`;
-    return;
-  }
+    cardTile.classList.add("flipping", "disabled-hover");
+    this.resultEl.classList.add("no-hover-global");
 
-  renderGrid();
-}
+    setTimeout(() => {
+      const oldOrder = this.selectedItems
+        .filter((c) => c.type === type)
+        .map((c) => c.key);
 
-function reloadCard(button) {
-  const cardTile = button.closest(".card-tile");
-  const clickedKey = cardTile.dataset.key;
-  const type = cardTile.querySelector(".card-label").classList.contains("gem")
-    ? "gem"
-    : cardTile.querySelector(".card-label").classList.contains("relic")
-    ? "relic"
-    : "spell";
-  const currentList = cardsRandomlyPicked[type];
-  const idx = currentList.findIndex((c) => c.key === clickedKey);
-  if (idx === -1) return;
+      this.selectedItems[idx] = newItem;
 
-  // 1) pioche
-  const usedKeys = new Set(
-    [
-      ...cardsRandomlyPicked.gem,
-      ...cardsRandomlyPicked.relic,
-      ...cardsRandomlyPicked.spell,
-    ].map((c) => c.key)
-  );
-  const options = cardsFromSelectedBoxes.filter(
-    (c) => c.type === type && !usedKeys.has(c.key)
-  );
-  if (!options.length) return;
-  const newCard = options[Math.floor(Math.random() * options.length)];
+      const typeItems = this.selectedItems
+        .filter((c) => c.type === type)
+        .sort((a, b) => a.cost - b.cost);
 
-  // 2) prépare le flip
-  const back = cardTile.querySelector(".card-back");
-  back.querySelector("img").src = newCard.imageUrl;
-  back.querySelector("img").alt = newCard.name;
-  const backLabel = back.querySelector(".card-label");
-  backLabel.textContent = newCard.name;
-  backLabel.className = `card-label ${newCard.type}`;
+      let ti = 0;
+      this.selectedItems = this.selectedItems.map((c) =>
+        c.type === type ? typeItems[ti++] : c
+      );
 
-  // 3) déclenche flip + bloque hover global
-  cardTile.classList.add("flipping", "disabled-hover");
-  const resultDiv = document.getElementById("result");
-  resultDiv.classList.add("no-hover-global");
+      const newOrder = typeItems.map((c) => c.key);
 
-  // 4) à mi‑animation (1.3s) on met à jour la liste et calcule les déplacements
-  setTimeout(() => {
-    const oldOrder = currentList.map((c) => c.key);
-    currentList[idx] = newCard;
-    currentList.sort((a, b) => a.cost - b.cost);
-    const newOrder = currentList.map((c) => c.key);
+      const moved = oldOrder
+        .map((k, i) => (k !== newOrder[i] ? k : null))
+        .filter((k) => k !== null);
 
-    // on repère les clefs qui changent d’index
-    const moved = oldOrder
-      .map((k, i) => (k !== newOrder[i] ? k : null))
-      .filter((k) => k !== null);
-
-    if (moved.length > 1) {
-      // --- fade–out / fade–in seulement si on a des échanges ---
-      moved.forEach((key) => {
-        const t = document.querySelector(`.card-tile[data-key="${key}"]`);
-        if (t) t.classList.add("fade-out");
-      });
-
-      setTimeout(() => {
-        renderGrid();
-
-        // fade-in sur les nouvelles positions
+      if (moved.length > 1) {
         moved.forEach((key) => {
           const t = document.querySelector(`.card-tile[data-key="${key}"]`);
-          if (t) t.classList.add("fade-in");
+          if (t) t.classList.add("fade-out");
         });
 
-        // cleanup
         setTimeout(() => {
-          resultDiv.classList.remove("no-hover-global");
-          document
-            .querySelectorAll(".card-tile.fade-out, .card-tile.fade-in")
-            .forEach((t) => t.classList.remove("fade-out", "fade-in"));
-        }, 800);
-      }, 600);
-    } else {
-      // --- pas de déplacement : on rafraîchit direct et on débloque le hover ---
-      renderGrid();
-      setTimeout(() => resultDiv.classList.remove("no-hover-global"), 400);
-    }
-  }, 1300);
+          this.renderGrid();
+          moved.forEach((key) => {
+            const t = document.querySelector(`.card-tile[data-key="${key}"]`);
+            if (t) t.classList.add("fade-in");
+          });
+          setTimeout(() => {
+            this.resultEl.classList.remove("no-hover-global");
+            document
+              .querySelectorAll(".card-tile.fade-out, .card-tile.fade-in")
+              .forEach((t) => t.classList.remove("fade-out", "fade-in"));
+          }, 800);
+        }, 600);
+      } else {
+        this.renderGrid();
+        setTimeout(() => {
+          this.resultEl.classList.remove("no-hover-global");
+        }, 400);
+      }
+    }, 1300);
+  }
 }
 
-function renderGrid() {
-  const resultDiv = document.getElementById("result");
-
-  const all = [
-    ...cardsRandomlyPicked.gem,
-    ...cardsRandomlyPicked.relic,
-    ...cardsRandomlyPicked.spell,
-  ];
-
-  resultDiv.innerHTML = `
-        <div class="aeon-grid">
-            ${all.map(renderCardTile).join("")}
-        </div>
-    `;
-}
+new AeonsendEngine().init();
 
 function renderCardTile(card) {
   return `

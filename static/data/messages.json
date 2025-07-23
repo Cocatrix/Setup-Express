@@ -2,7 +2,7 @@
   "cannot_load_boxes": "Impossible de charger les boîtes.",
   "cannot_load_cards": "Impossible de charger les cartes.",
   "no_box_selected": "Aucune boîte sélectionnée.",
-  "not_enough_cards": "Pas assez de cartes disponibles.",
-  "not_enough_sets": "Pas assez de sets pour en tirer 5.",
+  "not_enough_items": "Pas assez d'éléments disponibles pour une mise en place.",
+  "subclass_requirement": "Cette méthode abstraite doit être implémenté par la sous-classe",
   "zzz": "Bonjour petit curieux."
 }
