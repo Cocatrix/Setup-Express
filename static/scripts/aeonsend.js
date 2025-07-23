@@ -1,14 +1,16 @@
 import { fetchAeonsendData } from "../model/aeonsend_model.js";
+import { fetchMessages } from "../model/messages_model.js";
 
 // Private variables
 
-let cardsFromAllBoxes = [];
-let cardsFromSelectedBoxes = [];
+let cardsFromAllBoxes;
+let cardsFromSelectedBoxes;
 let cardsRandomlyPicked = {
   gem: [],
   relic: [],
   spell: [],
 };
+let messages;
 
 // Page init
 
@@ -19,6 +21,7 @@ if (document.readyState !== "loading") {
 }
 
 async function initAll() {
+  messages = await fetchMessages().catch(() => ({}));
   initBoxDelegation();
   initCardDelegation();
   cardsFromAllBoxes = await fetchAeonsendData();
@@ -52,8 +55,7 @@ function updateResult() {
   const resultDiv = document.getElementById("result");
 
   if (selectedValues.length === 0) {
-    resultDiv.innerHTML =
-      '<p class="empty-note">Aucune boîte sélectionnée.</p>';
+    resultDiv.innerHTML = `<p class="empty-note">${messages.no_box_selected}</p>`;
     return;
   }
 
@@ -81,7 +83,7 @@ function updateResult() {
     cardsRandomlyPicked.relic.length < 2 ||
     cardsRandomlyPicked.spell.length < 4
   ) {
-    resultDiv.innerHTML = `<p class="empty-note">Pas assez de cartes disponibles.</p>`;
+    resultDiv.innerHTML = `<p class="empty-note">${messages.not_enough_cards}</p>`;
     return;
   }
 
