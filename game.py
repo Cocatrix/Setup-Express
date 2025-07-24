@@ -76,3 +76,14 @@ CHALLENGERS_BOXES: List[Box] = [
     Box("beach", CHALLENGERS, "Beach Cup"),
     Box("rumble", CHALLENGERS, "Rumble"),
 ]
+
+LEGENDARY_BOXES: List[Box] = [
+    OriginalBox(LEGENDARY),
+    Box("dark_city", LEGENDARY, "Dark City"),
+    Box("realm_of_kings", LEGENDARY, "Realm of Kings"),
+    Box(
+        "marvel_studios_guardians_of_the_galaxy",
+        LEGENDARY,
+        "Marvel Studios' Guardians of the Galaxy",
+    ),
+]
