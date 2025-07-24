@@ -31,7 +31,10 @@ export class GameEngine {
     }, {});
   }
 
-  getPool(selectedKeys) {
+  getPool() {
+    const selectedKeys = Array.from(
+      document.querySelectorAll(this.boxSelector + ".selected")
+    ).map((el) => el.dataset.value);
     return selectedKeys.flatMap((k) => this.itemsByBox[k] || []);
   }
 
@@ -51,15 +54,11 @@ export class GameEngine {
   }
 
   updateResult() {
-    const selectedKeys = Array.from(
-      document.querySelectorAll(this.boxSelector + ".selected")
-    ).map((el) => el.dataset.value);
+    const pool = this.getPool();
 
-    if (selectedKeys.length === 0) {
+    if (pool.length === 0) {
       return this.showEmpty(this.messages.no_box_selected);
     }
-
-    const pool = this.getPool(selectedKeys);
 
     for (let [type, count] of Object.entries(this.pickers)) {
       const available = pool.filter((c) => c.type === type).length;

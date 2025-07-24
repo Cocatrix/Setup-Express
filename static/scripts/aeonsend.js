@@ -43,14 +43,9 @@ export class AeonsendEngine extends GameEngine {
     const idx = this.selectedItems.findIndex((c) => c.key === clickedKey);
     if (idx === -1) return;
 
-    const selectedKeys = Array.from(
-      document.querySelectorAll(this.boxSelector + ".selected")
-    ).map((el) => el.dataset.value);
-    const pool = this.getPool(selectedKeys);
-
     const usedKeys = new Set(this.selectedItems.map((c) => c.key));
 
-    const sameTypeCards = pool.filter(
+    const sameTypeCards = this.getPool().filter(
       (c) => c.type === type && !usedKeys.has(c.key)
     );
     if (sameTypeCards.length === 0) return;
