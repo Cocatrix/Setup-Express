@@ -1,44 +1,91 @@
-import { shuffle, NO_HOVER_TIMEOUT } from "./utils.js";
-import { fetchMessages } from "../model/messages_model.js";
+import { NO_HOVER_TIMEOUT } from "./utils.js";
+import { GameEngine } from "./game_engine.js";
 import { fetchChallengersData } from "../model/challengers_model.js";
 
-// Private variables
+export class ChallengersEngine extends GameEngine {
+  constructor() {
+    super({
+      boxSelector: ".box-tile",
+      resultSelector: "#result",
+      pickers: { set: 5 },
+    });
+  }
 
-let boxToSets = {};
-let availableSets = [];
-let selectedSets = [];
-let messages;
+  fetchData() {
+    return fetchChallengersData();
+  }
 
-// Page init
+  renderGrid() {
+    this.resultEl.innerHTML = `
+      <div class="challenger-list">
+        ${this.selectedItems.map(renderSetCard).join("")}
+      </div>`;
+  }
 
-if (document.readyState !== "loading") {
-  initChallengers();
-} else {
-  document.addEventListener("DOMContentLoaded", initChallengers);
+  attachHandlers() {
+    super.attachHandlers();
+    initMouseEventsDelegation(this.resultEl);
+  }
+
+  reloadItem(button) {
+    const oldKey = button.closest(".set-card").dataset.key;
+    const idx = this.selectedItems.findIndex((s) => s.key === oldKey);
+    if (idx === -1) return;
+
+    const excluded = this.selectedItems.map((s) => s.key);
+    const options = this.getPool().filter((s) => !excluded.includes(s.key));
+    if (options.length === 0) return;
+
+    const newSet = options[Math.floor(Math.random() * options.length)];
+    const cardElem = document.querySelector(`.set-card[data-key="${oldKey}"]`);
+
+    clearHighlights();
+    this.resultEl.classList.add("no-hover-global");
+
+    cardElem.style.transition = "transform 0.4s ease";
+    cardElem.style.transform = "rotateX(90deg)";
+
+    const onHalf = (e) => {
+      if (e.propertyName !== "transform") return;
+      cardElem.removeEventListener("transitionend", onHalf);
+
+      this.selectedItems[idx] = newSet;
+      cardElem.style.setProperty("--set-col", newSet.color);
+      cardElem.dataset.boxKey = newSet.boxKey;
+      cardElem.dataset.key = newSet.key;
+
+      const front = cardElem.querySelector(".card-face.front");
+      const back = cardElem.querySelector(".card-face.back");
+      front.innerHTML = renderCardFace(newSet);
+      back.innerHTML = renderCardFace(newSet);
+
+      cardElem.style.transition = "transform 0.4s ease";
+      cardElem.style.transform = "rotateX(180deg)";
+
+      const onEnd = (e2) => {
+        if (e2.propertyName !== "transform") return;
+        cardElem.removeEventListener("transitionend", onEnd);
+
+        cardElem.style.transition = "";
+        cardElem.style.transform = "";
+        setTimeout(() => {
+          this.resultEl.classList.remove("no-hover-global");
+          if (cardElem.matches(":hover")) {
+            document
+              .querySelector(`.box-tile[data-value="${newSet.boxKey}"]`)
+              ?.classList.add("highlight");
+          }
+        }, NO_HOVER_TIMEOUT);
+      };
+
+      cardElem.addEventListener("transitionend", onEnd);
+    };
+
+    cardElem.addEventListener("transitionend", onHalf);
+  }
 }
 
-async function initChallengers() {
-  messages = await fetchMessages().catch(() => ({}));
-  const allSets = await fetchChallengersData();
-
-  boxToSets = allSets.reduce((map, set) => {
-    (map[set.boxKey] ??= []).push(set);
-    return map;
-  }, {});
-
-  initEventDelegation();
-  updateResult();
-}
-
-// UI updating
-
-function getSetsFromBoxes(selectedBoxes) {
-  return selectedBoxes.flatMap((box) => boxToSets[box] || []);
-}
-
-function shuffleAndPickSets(sets, count) {
-  return shuffle(sets).slice(0, count);
-}
+new ChallengersEngine().init();
 
 function renderCardFace(set) {
   return `
@@ -81,110 +128,9 @@ function renderSetCard(set) {
   `;
 }
 
-function renderList() {
-  const resultDiv = document.getElementById("result");
-  resultDiv.innerHTML = `
-    <div class="challenger-list">
-      ${selectedSets.map((set) => renderSetCard(set)).join("")}
-    </div>
-  `;
-}
-
-function updateResult() {
-  const selectedBoxes = [
-    ...document.querySelectorAll(".box-tile.selected"),
-  ].map((el) => el.dataset.value);
-  const resultDiv = document.getElementById("result");
-
-  if (selectedBoxes.length === 0) {
-    resultDiv.innerHTML = `<p class="empty-note">${messages.no_box_selected}</p>`;
-    return;
-  }
-
-  availableSets = getSetsFromBoxes(selectedBoxes);
-  if (availableSets.length < 5) {
-    resultDiv.innerHTML = `<p class="empty-note">${messages.not_enough_sets}</p>`;
-    return;
-  }
-
-  selectedSets = shuffleAndPickSets(availableSets, 5);
-  renderList();
-}
-
-async function reloadSet(oldKey) {
-  console.log("reloadSet called for", oldKey);
-  const idx = selectedSets.findIndex((s) => s.key === oldKey);
-  if (idx === -1) return;
-
-  const excluded = selectedSets.map((s) => s.key);
-  const options = availableSets.filter((s) => !excluded.includes(s.key));
-  if (options.length === 0) return;
-
-  const newSet = options[Math.floor(Math.random() * options.length)];
-  const cardElem = document.querySelector(`.set-card[data-key="${oldKey}"]`);
-  const resultDiv = document.getElementById("result");
-
-  clearHighlights();
-  resultDiv.classList.add("no-hover-global");
-
-  cardElem.style.transition = "transform 0.4s ease";
-  cardElem.style.transform = "rotateX(90deg)";
-
-  cardElem.addEventListener("transitionend", function onHalf(e) {
-    if (e.propertyName !== "transform") return;
-    cardElem.removeEventListener("transitionend", onHalf);
-
-    selectedSets[idx] = newSet;
-    cardElem.style.setProperty("--set-col", newSet.color);
-    cardElem.dataset.boxKey = newSet.boxKey;
-    cardElem.dataset.key = newSet.key;
-
-    const front = cardElem.querySelector(".card-face.front");
-    const back = cardElem.querySelector(".card-face.back");
-    front.innerHTML = renderCardFace(newSet);
-    back.innerHTML = renderCardFace(newSet);
-
-    cardElem.style.transition = "transform 0.4s ease";
-    cardElem.style.transform = "rotateX(180deg)";
-
-    cardElem.addEventListener("transitionend", function onEnd(e2) {
-      if (e2.propertyName !== "transform") return;
-      cardElem.removeEventListener("transitionend", onEnd);
-
-      cardElem.style.transition = "";
-      cardElem.style.transform = "";
-      setTimeout(() => {
-        resultDiv.classList.remove("no-hover-global");
-        if (cardElem.matches(":hover")) {
-          document
-            .querySelector(`.box-tile[data-value="${newSet.boxKey}"]`)
-            ?.classList.add("highlight");
-        }
-      }, NO_HOVER_TIMEOUT);
-    });
-  });
-}
-
-function initEventDelegation() {
-  document.body.addEventListener("click", (event) => {
-    const tile = event.target.closest(".box-tile");
-    if (tile) {
-      tile.classList.toggle("selected");
-      updateResult();
-    }
-
-    const reloadBtn = event.target.closest(".reload-button");
-    if (reloadBtn) {
-      event.stopPropagation();
-      const card = reloadBtn.closest(".set-card");
-      reloadSet(card.dataset.key);
-    }
-  });
-
-  const resultDiv = document.getElementById("result");
-
+function initMouseEventsDelegation(resultEl) {
   document.body.addEventListener("mouseover", (event) => {
-    if (resultDiv.classList.contains("no-hover-global")) return;
+    if (resultEl.classList.contains("no-hover-global")) return;
     const card = event.target.closest(".set-card");
     if (card) {
       const tile = document.querySelector(
@@ -195,7 +141,7 @@ function initEventDelegation() {
   });
 
   document.body.addEventListener("mouseout", (event) => {
-    if (resultDiv.classList.contains("no-hover-global")) return;
+    if (resultEl.classList.contains("no-hover-global")) return;
     const card = event.target.closest(".set-card");
     if (card) {
       const tile = document.querySelector(

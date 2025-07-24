@@ -3,110 +3,128 @@
     "boxKey": "challengers_core",
     "key": "chateau",
     "name": "Château",
-    "color": "#3f88bf"
+    "color": "#3f88bf",
+    "type": "set"
   },
   {
     "boxKey": "challengers_core",
     "key": "fete",
     "name": "Fête foraine",
-    "color": "#f7b322"
+    "color": "#f7b322",
+    "type": "set"
   },
   {
     "boxKey": "challengers_core",
     "key": "espace",
     "name": "Espace",
-    "color": "#d93d3f"
+    "color": "#d93d3f",
+    "type": "set"
   },
   {
     "boxKey": "challengers_core",
     "key": "studio",
     "name": "Studio de film",
-    "color": "#72a145"
+    "color": "#72a145",
+    "type": "set"
   },
   {
     "boxKey": "challengers_core",
     "key": "maison_hantee",
     "name": "Maison hantée",
-    "color": "#f0822e"
+    "color": "#f0822e",
+    "type": "set"
   },
   {
     "boxKey": "challengers_core",
     "key": "marins",
     "name": "Marins",
-    "color": "#8b3188"
+    "color": "#8b3188",
+    "type": "set"
   },
 
   {
     "boxKey": "challengers_beach",
     "key": "foret",
     "name": "Forêt enchantée",
-    "color": "#126b53"
+    "color": "#126b53",
+    "type": "set"
   },
   {
     "boxKey": "challengers_beach",
     "key": "jouets",
     "name": "Magasin de jouets",
-    "color": "#c0d83c"
+    "color": "#c0d83c",
+    "type": "set"
   },
   {
     "boxKey": "challengers_beach",
     "key": "montagne",
     "name": "Montagne",
-    "color": "#534b96"
+    "color": "#534b96",
+    "type": "set"
   },
   {
     "boxKey": "challengers_beach",
     "key": "base_secrete",
     "name": "Base secrète",
-    "color": "#ec088c"
+    "color": "#ec088c",
+    "type": "set"
   },
   {
     "boxKey": "challengers_beach",
     "key": "universite",
     "name": "Université",
-    "color": "#633023"
+    "color": "#633023",
+    "type": "set"
   },
   {
     "boxKey": "challengers_beach",
     "key": "club_plage",
     "name": "Club de plage",
-    "color": "#23a9a8"
+    "color": "#23a9a8",
+    "type": "set"
   },
 
   {
     "boxKey": "challengers_rumble",
     "key": "wwe",
     "name": "WWE",
-    "color": "#3a3a3a"
+    "color": "#3a3a3a",
+    "type": "set"
   },
   {
     "boxKey": "challengers_rumble",
     "key": "urban",
     "name": "Urban Rivals",
-    "color": "#be4113"
+    "color": "#be4113",
+    "type": "set"
   },
   {
     "boxKey": "challengers_rumble",
     "key": "artistes",
     "name": "Artistes",
-    "color": "#582fff"
+    "color": "#582fff",
+    "type": "set"
   },
   {
     "boxKey": "challengers_rumble",
     "key": "dinosaures",
     "name": "Dinosaures",
-    "color": "#7f8c2c"
+    "color": "#7f8c2c",
+    "type": "set"
   },
   {
     "boxKey": "challengers_rumble",
     "key": "pokemon",
     "name": "Pokémon",
-    "color": "#ae0e65"
+    "color": "#ae0e65",
+    "type": "set"
   },
   {
     "boxKey": "challengers_rumble",
     "key": "fun",
     "name": "Fun",
-    "color": "#ffbf00"
+    "color": "#ffbf00",
+    "type": "set"
   }
 ]
