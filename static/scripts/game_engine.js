@@ -2,10 +2,10 @@ import { shuffle } from "./utils.js";
 import { fetchMessages } from "../model/messages_model.js";
 
 export class GameEngine {
-  constructor({ boxSelector, resultSelector, pickers }) {
-    this.boxSelector = boxSelector;
-    this.resultEl = document.querySelector(resultSelector);
+  constructor({ pickers }) {
     this.pickers = pickers; // e.g. { gem:3, relic:2, spell:4 } or { sets:5 }
+    this.boxSelector = ".box-tile";
+    this.resultEl = document.querySelector("#result");
     this.itemsByBox = {};
     this.allItems = [];
     this.selectedItems = [];

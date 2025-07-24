@@ -4,9 +4,6 @@ import { fetchAeonsendData } from "../model/aeonsend_model.js";
 export class AeonsendEngine extends GameEngine {
   constructor() {
     super({
-      boxSelector: ".box-tile",
-      resultSelector: "#result",
-      minItems: null, // on gère gem/relic/spell séparément
       pickers: { gem: 3, relic: 2, spell: 4 },
     });
   }

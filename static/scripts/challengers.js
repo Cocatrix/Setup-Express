@@ -5,8 +5,6 @@ import { fetchChallengersData } from "../model/challengers_model.js";
 export class ChallengersEngine extends GameEngine {
   constructor() {
     super({
-      boxSelector: ".box-tile",
-      resultSelector: "#result",
       pickers: { set: 5 },
     });
   }
