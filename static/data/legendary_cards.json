@@ -1,0 +1,582 @@
+[
+  {
+    "boxKey": "legendary_core",
+    "key": "dr_doom",
+    "name": "Dr. Doom",
+    "type": "mastermind",
+    "alwaysLeads": "doombot_legion"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "loki",
+    "name": "Loki",
+    "type": "mastermind",
+    "alwaysLeads": "enemies_of_asgard"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "magneto",
+    "name": "Magneto",
+    "type": "mastermind",
+    "alwaysLeads": "brotherhood"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "red_skull",
+    "name": "Red Skull",
+    "type": "mastermind",
+    "alwaysLeads": "hydra"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "midtown_bank_robbery",
+    "name": "Midtown Bank Robbery",
+    "type": "scheme",
+    "nbBystanders": 12
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "negative_zone_prison_breakout",
+    "name": "Negative Zone Prison Breakout",
+    "type": "scheme",
+    "extraHenchmen": 1
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "portals_to_the_dark_dimension",
+    "name": "Portals to the Dark Dimension",
+    "type": "scheme",
+    "twists": 7
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "replace_earths_leaders_with_killbots",
+    "name": "Replace Earth's Leaders with Killbots",
+    "type": "scheme",
+    "twists": 5,
+    "nbBystanders": 18
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "secret_invasion_of_the_skrull_shapeshifters",
+    "name": "Secret Invasion of the Skrull Shapeshifters",
+    "type": "scheme",
+    "extraHeroes": 1
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "super_hero_civil_war",
+    "name": "Super Hero Civil War",
+    "type": "scheme",
+    "2p": { "extraHeroes": -1 },
+    "4p": { "twists": 5 },
+    "5p": { "twists": 5 }
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "the_legacy_virus",
+    "name": "The Legacy Virus",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "unleash_the_power_of_the_cosmic_cube",
+    "name": "Unleash the Power of the Cosmic Cube",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "brotherhood",
+    "name": "Brotherhood",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "enemies_of_asgard",
+    "name": "Enemies of Asgard",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "hydra",
+    "name": "Hydra",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "masters_of_evil",
+    "name": "Masters of Evil",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "radiation",
+    "name": "Radiation",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "skrulls",
+    "name": "Skrulls",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "spider_foes",
+    "name": "Spider‑Foes",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "doombot_legion",
+    "name": "Doombot Legion",
+    "type": "henchman"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "hand_ninjas",
+    "name": "Hand Ninjas",
+    "type": "henchman"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "savage_land_mutates",
+    "name": "Savage Land Mutates",
+    "type": "henchman"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "sentinel",
+    "name": "Sentinel",
+    "type": "henchman"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "black_widow",
+    "name": "Black Widow",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "captain_america",
+    "name": "Captain America",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "cyclops",
+    "name": "Cyclops",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "deadpool",
+    "name": "Deadpool",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "emma_frost",
+    "name": "Emma Frost",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "gambit",
+    "name": "Gambit",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "hawkeye",
+    "name": "Hawkeye",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "hulk",
+    "name": "Hulk",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "iron_man",
+    "name": "Iron Man",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "nick_fury",
+    "name": "Nick Fury",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "rogue",
+    "name": "Rogue",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "spider_man",
+    "name": "Spider‑Man",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "storm",
+    "name": "Storm",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "thor",
+    "name": "Thor",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_core",
+    "key": "wolverine",
+    "name": "Wolverine",
+    "type": "hero"
+  },
+
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "emperor_vulcan_of_the_shiar",
+    "name": "Emperor Vulcan of the Shi'ar",
+    "type": "mastermind",
+    "alwaysLeads": "shiar_imperial_elite"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "epic_emperor_vulcan",
+    "name": "Epic Emperor Vulcan",
+    "type": "mastermind",
+    "alwaysLeads": "shiar_imperial_elite"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "epic_maximus_the_mad",
+    "name": "Epic Maximus the Mad",
+    "type": "mastermind",
+    "alwaysLeads": "inhuman_rebellion"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "maximus_the_mad",
+    "name": "Maximus the Mad",
+    "type": "mastermind",
+    "alwaysLeads": "inhuman_rebellion"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "devolve_with_xerogen_crystals",
+    "name": "Devolve with Xerogen Crystals",
+    "type": "scheme",
+    "2p": { "twists": 5 },
+    "3p": { "twists": 6 },
+    "4p": { "twists": 7 },
+    "5p": { "twists": 8 },
+    "extraHenchmen": 1
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "ruin_the_perfect_wedding",
+    "name": "Ruin the Perfect Wedding",
+    "type": "scheme",
+    "twists": 11,
+    "extraHeroes": 2,
+    "extraHenchmen": 1
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "tornado_of_terrigen_mists",
+    "name": "Tornado of Terrigen Mists",
+    "type": "scheme",
+    "twists": 10
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "war_of_kings",
+    "name": "War of Kings",
+    "type": "scheme",
+    "twists": 11
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "inhuman_rebellion",
+    "name": "Inhuman Rebellion",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "shiar_imperial_elite",
+    "name": "Shi'ar Imperial Elite",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "black_bolt",
+    "name": "Black Bolt",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "crystal",
+    "name": "Crystal",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "gorgon",
+    "name": "Gorgon",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "karnak",
+    "name": "Karnak",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_realm_of_kings",
+    "key": "medusa",
+    "name": "Medusa",
+    "type": "hero"
+  },
+
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "apocalypse",
+    "name": "Apocalypse",
+    "type": "mastermind",
+    "alwaysLeads": true
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "kingpin",
+    "name": "Kingpin",
+    "type": "mastermind",
+    "alwaysLeads": true
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "mephisto",
+    "name": "Mephisto",
+    "type": "mastermind",
+    "alwaysLeads": true
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "mr_sinister",
+    "name": "Mr. Sinister",
+    "type": "mastermind",
+    "alwaysLeads": true
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "stryfe",
+    "name": "Stryfe",
+    "type": "mastermind",
+    "alwaysLeads": true
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "capture_baby_hope",
+    "name": "Capture Baby Hope",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "detonate_the_helicarrier",
+    "name": "Detonate the Helicarrier",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "massive_earthquake_generator",
+    "name": "Massive Earthquake Generator",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "organized_crime_wave",
+    "name": "Organized Crime Wave",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "save_humanity",
+    "name": "Save Humanity",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "steal_the_weaponized_plutonium",
+    "name": "Steal the Weaponized Plutonium",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "transform_citizens_into_demons",
+    "name": "Transform Citizens into Demons",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "x_cutioners_song",
+    "name": "X‑Cutioner's Song",
+    "type": "scheme"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "emissaries_of_evil",
+    "name": "Emissaries of Evil",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "four_horsemen",
+    "name": "Four Horsemen",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "marauders",
+    "name": "Marauders",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "mlf",
+    "name": "MLF",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "streets_of_new_york",
+    "name": "Streets of New York",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "underworld",
+    "name": "Underworld",
+    "type": "villain"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "maggia_goons",
+    "name": "Maggia Goons",
+    "type": "henchman"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "phalanx",
+    "name": "Phalanx",
+    "type": "henchman"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "angel",
+    "name": "Angel",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "bishop",
+    "name": "Bishop",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "blade",
+    "name": "Blade",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "cable",
+    "name": "Cable",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "colossus",
+    "name": "Colossus",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "daredevil",
+    "name": "Daredevil",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "domino",
+    "name": "Domino",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "elektra",
+    "name": "Elektra",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "forge",
+    "name": "Forge",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "ghost_rider",
+    "name": "Ghost Rider",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "iceman",
+    "name": "Iceman",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "iron_fist",
+    "name": "Iron Fist",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "jean_grey",
+    "name": "Jean Grey",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "nightcrawler",
+    "name": "Nightcrawler",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "professor_x",
+    "name": "Professor X",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "punisher",
+    "name": "Punisher",
+    "type": "hero"
+  },
+  {
+    "boxKey": "legendary_dark_city",
+    "key": "wolverine_x_force",
+    "name": "Wolverine X-Force",
+    "type": "hero"
+  }
+]
