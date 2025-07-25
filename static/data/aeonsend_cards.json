@@ -187,5 +187,215 @@
     "name": "Vide dévorant",
     "type": "spell",
     "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "sazite_de_duplication",
+    "name": "Sazite de duplication",
+    "type": "gem",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "cyclite_oblongue",
+    "name": "Cyclite oblongue",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "saphir_galvanise",
+    "name": "Saphir galvanisé",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "spirale_d_ambre",
+    "name": "Spirale d'ambre",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "peridot_en_fusion",
+    "name": "Péridot en fusion",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "phenixium_fossilise",
+    "name": "Phénixium fossilisé",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "heliotite_intense",
+    "name": "Héliotite intense",
+    "type": "gem",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "soleil_en_bouteille",
+    "name": "Soleil en bouteille",
+    "type": "relic",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "racive_carnivore",
+    "name": "Racive carnivore",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "chaine_de_restitution",
+    "name": "Chaîne de restitution",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "alterateur_de_destin",
+    "name": "Altérateur de destin",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "orbe_des_profondeurs",
+    "name": "Orbe des profondeurs",
+    "type": "relic",
+    "cost": 2
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "circuit_de_reconstitution",
+    "name": "Circuit de reconstitution",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "dague_de_faille",
+    "name": "Dague de faille",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "reflecteur_de_transmutation",
+    "name": "Réflecteur de transmutation",
+    "type": "relic",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "vortex_desequilibre",
+    "name": "Vortex déséquilibré",
+    "type": "relic",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "relais_arcanique",
+    "name": "Relais arcanique",
+    "type": "spell",
+    "cost": 8
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "explosion_etourdissante",
+    "name": "Explosion étourdissante",
+    "type": "spell",
+    "cost": 8
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "givre_renforce",
+    "name": "Givre renforcé",
+    "type": "spell",
+    "cost": 2
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "afflux_de_volonte",
+    "name": "Afflux de volonté",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "vivacite_d_esprit",
+    "name": "Vivacité d'esprit",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "combustion_enrichie",
+    "name": "Combustion enrichie",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "fleche_eclair",
+    "name": "Flèche éclair",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "orage_jumele",
+    "name": "Orage jumelé",
+    "type": "spell",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "confluence_de_radiance",
+    "name": "Confluence de radiance",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "eclair_destructeur",
+    "name": "Eclair destructeur",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "effusion_de_flammes",
+    "name": "Effusion de flammes",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "tornade_de_lucidite",
+    "name": "Tornade de lucidité",
+    "type": "spell",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "morsure_ingenieuse",
+    "name": "Morsure ingénieuse",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_parias",
+    "key": "faille_instable",
+    "name": "Faille instable",
+    "type": "spell",
+    "cost": 5
   }
 ]
