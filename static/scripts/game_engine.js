@@ -54,6 +54,7 @@ export class GameEngine {
   }
 
   updateResult() {
+    this.resultEl.classList.remove("no-hover-global");
     const pool = this.getPool();
 
     if (pool.length === 0) {
