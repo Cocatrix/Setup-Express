@@ -11,6 +11,8 @@ from game import (
     AEONSEND_BOXES,
     CHALLENGERS,
     CHALLENGERS_BOXES,
+    LEGENDARY,
+    LEGENDARY_BOXES,
 )
 from page_game import page_game
 from page_root import page_root
@@ -45,3 +47,8 @@ def route_challengers():
 @route("/aeonsend")
 def route_aeonsend():
     return render_game_page(page_game(AEONSEND, AEONSEND_BOXES), AEONSEND)
+
+
+@route("/legendary")
+def route_legendary():
+    return render_game_page(page_game(LEGENDARY, LEGENDARY_BOXES), LEGENDARY)
