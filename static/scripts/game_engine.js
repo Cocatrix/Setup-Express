@@ -3,7 +3,7 @@ import { fetchMessages } from "../model/messages_model.js";
 
 export class GameEngine {
   constructor({ pickers }) {
-    this.pickers = pickers; // e.g. { gem:3, relic:2, spell:4 } or { sets:5 }
+    this.pickers = pickers;
     this.boxSelector = ".box-tile";
     this.resultEl = document.querySelector("#result");
     this.itemsByBox = {};
