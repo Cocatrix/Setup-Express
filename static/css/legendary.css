@@ -112,6 +112,10 @@
   animation-play-state: running;
 }
 
+.block1.paused::before {
+  animation-play-state: paused;
+}
+
 @keyframes progressBar {
   from {
     clip-path: inset(0 100% 0 0);
@@ -124,4 +128,9 @@
 .block1 .legendary-cards {
   position: relative;
   z-index: 1;
+}
+
+.legendary-card.hovered {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }
