@@ -75,6 +75,8 @@
   z-index: 2;
 }
 
+/* Animations: clip-path circle and card rotation */
+
 .legendary-card .flip-container::before {
   content: "";
   position: absolute;
@@ -92,4 +94,34 @@
 
 .legendary-card.flip .flip-container {
   transform: rotateY(180deg);
+}
+
+/* Animations: clip-path linear */
+
+.block1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(0, 0, 0, 0.1);
+  animation: progressBar 3s linear forwards paused;
+  z-index: 0;
+}
+
+.block1.progress::before {
+  animation-play-state: running;
+}
+
+@keyframes progressBar {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+.block1 .legendary-cards {
+  position: relative;
+  z-index: 1;
 }
