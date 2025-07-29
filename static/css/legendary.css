@@ -1,0 +1,95 @@
+.legendary-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  height: 100%;
+}
+
+.legendary-block {
+  flex: 1;
+  background: var(--block-bg, #f0f0f0);
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.block1 {
+  --block-bg: #e8e3fc;
+}
+.block2 {
+  --block-bg: #ffecec;
+}
+.block3 {
+  --block-bg: #ecffe8;
+}
+
+.legendary-cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.legendary-card {
+  width: 160px;
+  aspect-ratio: 63 / 88;
+  perspective: 1000px;
+  position: relative;
+  overflow: visible;
+}
+
+.legendary-card .flip-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  transform-style: preserve-3d;
+  transition: transform 2s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.legendary-card .face.back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ddd;
+  z-index: 0;
+}
+
+.legendary-card .face.front {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(180deg);
+  background: #fff;
+  z-index: 2;
+}
+
+.legendary-card .flip-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  border-radius: inherit;
+  clip-path: circle(0% at center);
+  transition: clip-path 2s ease-in;
+  z-index: 1;
+}
+
+.legendary-card.reveal .flip-container::before {
+  clip-path: circle(72% at center); /* 100% * 63/88 */
+}
+
+.legendary-card.flip .flip-container {
+  transform: rotateY(180deg);
+}
