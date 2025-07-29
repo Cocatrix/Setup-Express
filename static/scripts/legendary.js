@@ -8,6 +8,8 @@ export class LegendaryEngine extends GameEngine {
     });
     this._revealTimer = null;
     this._flipTimers = [];
+    this._progress1Timer = null;
+    this._progress2Timer = null;
   }
 
   async fetchData() {
@@ -86,8 +88,13 @@ export class LegendaryEngine extends GameEngine {
     clearTimeout(this._revealTimer);
     this._flipTimers.forEach(clearTimeout);
     this._flipTimers = [];
+    clearTimeout(this._progress1Timer);
+    clearTimeout(this._progress2Timer);
   }
 
+  _stopProgress(block) {
+    block.classList.remove("progress");
+  }
 
   _stopAnimations(cards) {
     cards.forEach((el) => el.classList.remove("reveal", "flip"));
@@ -99,11 +106,19 @@ export class LegendaryEngine extends GameEngine {
     const block1Cards = Array.from(
       this.resultEl.querySelectorAll(".block1 .legendary-card")
     );
+    const otherCards = Array.from(
+      this.resultEl.querySelectorAll(
+        ".block2 .legendary-card, .block3 .legendary-card"
+      )
+    );
     const revealDelay = 1800;
     const between = 300;
+    const progressDelay = 3000;
 
     this._stopTimeouts();
+    this._stopProgress(block1);
     this._stopAnimations(block1Cards);
+    this._stopAnimations(otherCards);
 
     block1Cards.forEach((el) => el.classList.add("reveal"));
 
@@ -115,6 +130,20 @@ export class LegendaryEngine extends GameEngine {
         this._flipTimers.push(t);
       });
     }, revealDelay);
+
+    const totalFlipTime = between * (block1Cards.length + 1);
+
+    this._progress1Timer = setTimeout(() => {
+      block1.classList.add("progress");
+      this._progress2Timer = setTimeout(() => {
+        otherCards.forEach((el, i) => {
+          const t = setTimeout(() => {
+            el.classList.add("flip");
+          }, i * between);
+          this._flipTimers.push(t);
+        });
+      }, progressDelay);
+    }, revealDelay + totalFlipTime);
   }
 
   reloadItem() {
