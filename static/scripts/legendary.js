@@ -1,5 +1,6 @@
 import { GameEngine } from "./game_engine.js";
 import { fetchLegendaryData } from "../model/legendary_model.js";
+import { PauseableTimer } from "./pauseable_timer.js";
 
 export class LegendaryEngine extends GameEngine {
   constructor() {
@@ -89,7 +90,7 @@ export class LegendaryEngine extends GameEngine {
     this._flipTimers.forEach(clearTimeout);
     this._flipTimers = [];
     clearTimeout(this._progress1Timer);
-    clearTimeout(this._progress2Timer);
+    this._progress2Timer?.clear();
   }
 
   _stopProgress(block) {
@@ -135,7 +136,7 @@ export class LegendaryEngine extends GameEngine {
 
     this._progress1Timer = setTimeout(() => {
       block1.classList.add("progress");
-      this._progress2Timer = setTimeout(() => {
+      this._progress2Timer = new PauseableTimer(() => {
         otherCards.forEach((el, i) => {
           const t = setTimeout(() => {
             el.classList.add("flip");
@@ -143,7 +144,27 @@ export class LegendaryEngine extends GameEngine {
           this._flipTimers.push(t);
         });
       }, progressDelay);
+      this._attachHoverPause();
+      this._progress2Timer.startTimer();
     }, revealDelay + totalFlipTime);
+  }
+
+  _attachHoverPause() {
+    const block1 = this.resultEl.querySelector(".block1");
+    this.resultEl
+      .querySelectorAll(".block1 .legendary-card")
+      .forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          this._progress2Timer.pause();
+          block1.classList.add("paused");
+          card.classList.add("hovered");
+        });
+        card.addEventListener("mouseleave", () => {
+          this._progress2Timer.resume();
+          block1.classList.remove("paused");
+          card.classList.remove("hovered");
+        });
+      });
   }
 
   reloadItem() {
