@@ -7,6 +7,7 @@ export class LegendaryEngine extends GameEngine {
       pickers: { mastermind: 1, scheme: 1 },
     });
     this._revealTimer = null;
+    this._flipTimers = [];
   }
 
   async fetchData() {
@@ -81,24 +82,39 @@ export class LegendaryEngine extends GameEngine {
     this._startRevealAndFlip();
   }
 
-  _startRevealAndFlip() {
-    // clear any prior animation
+  _stopTimeouts() {
     clearTimeout(this._revealTimer);
+    this._flipTimers.forEach(clearTimeout);
+    this._flipTimers = [];
+  }
 
-    const cards = Array.from(
+
+  _stopAnimations(cards) {
+    cards.forEach((el) => el.classList.remove("reveal", "flip"));
+    void cards[0].offsetWidth; // trick to force reflow
+  }
+
+  _startRevealAndFlip() {
+    const block1 = this.resultEl.querySelector(".block1");
+    const block1Cards = Array.from(
       this.resultEl.querySelectorAll(".block1 .legendary-card")
     );
+    const revealDelay = 1800;
+    const between = 300;
 
-    // add reveal class to trigger circle wipe
-    cards.forEach((el) => el.classList.remove("reveal", "flip"));
-    // force reflow then…
-    void cards[0].offsetWidth;
+    this._stopTimeouts();
+    this._stopAnimations(block1Cards);
 
-    cards.forEach((el) => el.classList.add("reveal"));
+    block1Cards.forEach((el) => el.classList.add("reveal"));
 
     this._revealTimer = setTimeout(() => {
-      cards.forEach((el) => el.classList.add("flip"));
-    }, 1800);
+      block1Cards.forEach((el, i) => {
+        const t = setTimeout(() => {
+          el.classList.add("flip");
+        }, i * between);
+        this._flipTimers.push(t);
+      });
+    }, revealDelay);
   }
 
   reloadItem() {
