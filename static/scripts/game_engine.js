@@ -88,12 +88,12 @@ export class GameEngine {
       }
     }
 
-    this.selectedItems = this.pickRandom(pool);
+    this.selectedItems = this.pickRandom(pool, this.pickers);
     this.renderGrid();
   }
 
-  pickRandom(pool) {
-    return Object.entries(this.pickers).flatMap(([type, count]) => {
+  pickRandom(pool, pickers) {
+    return Object.entries(pickers).flatMap(([type, count]) => {
       const options = pool.filter((item) => item.type === type);
       return shuffle(options).slice(0, count);
     });
