@@ -11,10 +11,31 @@ export class LegendaryEngine extends GameEngine {
     this._flipTimers = [];
     this._progress1Timer = null;
     this._progress2Timer = null;
+
+    this.nbTwists = 0;
+    this.nbBystanders = 0;
   }
 
   async fetchData() {
     return await fetchLegendaryData();
+  }
+
+  _renderCard(key, name) {
+    return `
+            <div class="legendary-card" data-index="${key}">
+              <div class="flip-container">
+                <div class="face back"></div>
+                <div class="face front"><h2>${name}</h2></div>
+              </div>
+            </div>
+          `;
+  }
+
+  _renderCards(types) {
+    this.selectedItems
+      .filter((c) => types.includes(c.type))
+      .map((card) => this._renderCard(card.key, card.name))
+      .join("");
   }
 
   renderGrid() {
@@ -22,67 +43,35 @@ export class LegendaryEngine extends GameEngine {
     <div class="legendary-section">
       <div class="legendary-block block1">
         <div class="legendary-cards">
-          ${[0, 1]
-            .map(
-              (i) => `
-            <div class="legendary-card" data-index="${i}">
-              <div class="flip-container">
-                <div class="face back"></div>
-                <div class="face front"><h2>${this.selectedItems[i].name}</h2></div>
-              </div>
-            </div>
-          `
-            )
-            .join("")}
+          ${this._renderCards(["mastermind", "scheme"])}
         </div>
       </div>
       <div class="legendary-block block2">
         <div class="legendary-cards">
-          <div class="legendary-card empty">
-            <div class="flip-container">
-              <div class="face back"></div>
-              <div class="face front"><h2>&nbsp;</h2></div>
-            </div>
-          </div>
+          ${this._renderCards(["villain", "henchman"])}
         </div>
       </div>
       <div class="legendary-block block3">
         <div class="legendary-cards">
-          <div class="legendary-card empty">
-            <div class="flip-container">
-              <div class="face back"></div>
-              <div class="face front"><h2>&nbsp;</h2></div>
-            </div>
-          </div>
-          <div class="legendary-card empty">
-            <div class="flip-container">
-              <div class="face back"></div>
-              <div class="face front"><h2>&nbsp;</h2></div>
-            </div>
-          </div>
-          <div class="legendary-card empty">
-            <div class="flip-container">
-              <div class="face back"></div>
-              <div class="face front"><h2>&nbsp;</h2></div>
-            </div>
-          </div>
-          <div class="legendary-card empty">
-            <div class="flip-container">
-              <div class="face back"></div>
-              <div class="face front"><h2>&nbsp;</h2></div>
-            </div>
-          </div>
-          <div class="legendary-card empty">
-            <div class="flip-container">
-              <div class="face back"></div>
-              <div class="face front"><h2>&nbsp;</h2></div>
-            </div>
-          </div>
+          ${this._renderCards(["hero"])}
         </div>
       </div>
     </div>
   `;
     this._startRevealAndFlip();
+  }
+
+  _refreshBlocksTwoAndThree() {
+    document.querySelector("block2").innerHTML = `
+      <div class="legendary-cards">
+        ${this._renderCards(["villain", "henchman"])}
+      </div>
+    `;
+    document.querySelector("block3").innerHTML = `
+      <div class="legendary-cards">
+        ${this._renderCards(["hero"])}
+      </div>
+    `;
   }
 
   _stopTimeouts() {
@@ -107,7 +96,7 @@ export class LegendaryEngine extends GameEngine {
     const block1Cards = Array.from(
       this.resultEl.querySelectorAll(".block1 .legendary-card")
     );
-    const otherCards = Array.from(
+    let otherCards = Array.from(
       this.resultEl.querySelectorAll(
         ".block2 .legendary-card, .block3 .legendary-card"
       )
@@ -136,7 +125,14 @@ export class LegendaryEngine extends GameEngine {
 
     this._progress1Timer = setTimeout(() => {
       block1.classList.add("progress");
+      this._pickOtherCards();
       this._progress2Timer = new PauseableTimer(() => {
+        _refreshBlocksTwoAndThree();
+        otherCards = Array.from(
+          this.resultEl.querySelectorAll(
+            ".block2 .legendary-card, .block3 .legendary-card"
+          )
+        );
         otherCards.forEach((el, i) => {
           const t = setTimeout(() => {
             el.classList.add("flip");
@@ -169,6 +165,50 @@ export class LegendaryEngine extends GameEngine {
 
   reloadItem() {
     // no per‑card reload in Legendary—for now just do nothing
+  }
+
+  _pickOtherCards(nbPlayers) {
+    let alwaysLed1, alwaysLed2;
+
+    let nbHeroes = this.selectedItems[1].nbHeroes(nbPlayers);
+    let nbVillains = this.selectedItems[1].nbVillains(nbPlayers);
+    let nbHenchmen = this.selectedItems[1].nbHenchmen(nbPlayers);
+
+    this.nbTwists = this.selectedItems[1].nbTwists(nbPlayers);
+    this.nbBystanders = this.selectedItems[1].nbBystanders(nbPlayers);
+
+    let pool = this.getPool();
+
+    if (this.selectedItems[0].alwaysLeads != null) {
+      alwaysLed1 = pool.find(
+        (card) => card.key === this.selectedItems[0].alwaysLeads
+      );
+      this.selectedItems.push(alwaysLed1);
+      if (alwaysLed1.type === "villain") {
+        nbVillains -= 1;
+      } else {
+        nbHenchmen -= 1;
+      }
+      pool = pool.filter((card) => card !== alwaysLed1);
+    }
+    if (this.selectedItems[1].alwaysLeads != null) {
+      alwaysLed2 = pool.find(
+        (card) => card.key === this.selectedItems[1].alwaysLeads
+      );
+      this.selectedItems.push(alwaysLed2);
+      if (alwaysLed2.type === "villain") {
+        nbVillains -= 1;
+      } else {
+        nbHenchmen -= 1;
+      }
+      pool = pool.filter((card) => card !== alwaysLed2);
+    }
+
+    this.pickRandom(pool, {
+      hero: nbHeroes,
+      villain: nbVillains,
+      henchman: nbHenchmen,
+    });
   }
 }
 

@@ -351,35 +351,35 @@
     "key": "apocalypse",
     "name": "Apocalypse",
     "type": "mastermind",
-    "alwaysLeads": true
+    "alwaysLeads": null
   },
   {
     "boxKey": "legendary_dark_city",
     "key": "kingpin",
     "name": "Kingpin",
     "type": "mastermind",
-    "alwaysLeads": true
+    "alwaysLeads": null
   },
   {
     "boxKey": "legendary_dark_city",
     "key": "mephisto",
     "name": "Mephisto",
     "type": "mastermind",
-    "alwaysLeads": true
+    "alwaysLeads": null
   },
   {
     "boxKey": "legendary_dark_city",
     "key": "mr_sinister",
     "name": "Mr. Sinister",
     "type": "mastermind",
-    "alwaysLeads": true
+    "alwaysLeads": null
   },
   {
     "boxKey": "legendary_dark_city",
     "key": "stryfe",
     "name": "Stryfe",
     "type": "mastermind",
-    "alwaysLeads": true
+    "alwaysLeads": null
   },
   {
     "boxKey": "legendary_dark_city",
