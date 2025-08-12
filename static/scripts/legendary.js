@@ -22,7 +22,7 @@ export class LegendaryEngine extends GameEngine {
 
   _renderCard(key, name) {
     return `
-            <div class="legendary-card" data-index="${key}">
+            <div class="legendary-card" data-key="${key}">
               <div class="flip-container">
                 <div class="face back"></div>
                 <div class="face front"><h2>${name}</h2></div>
@@ -31,11 +31,16 @@ export class LegendaryEngine extends GameEngine {
           `;
   }
 
-  _renderCards(types) {
-    this.selectedItems
-      .filter((c) => types.includes(c.type))
-      .map((card) => this._renderCard(card.key, card.name))
-      .join("");
+  _pickType(pool, type, count) {
+    const options = pool.filter((c) => c.type === type);
+    const picked = options.sort(() => Math.random() - 0.5).slice(0, count);
+    const pickedSet = new Set(picked);
+    const newPool = pool.filter((c) => !pickedSet.has(c));
+    return [picked, newPool];
+  }
+
+  _renderCardsFrom(list) {
+    return list.map((c) => this._renderCard(c.key, c.name)).join("");
   }
 
   renderGrid() {
@@ -46,32 +51,24 @@ export class LegendaryEngine extends GameEngine {
           ${this._renderCards(["mastermind", "scheme"])}
         </div>
       </div>
+
       <div class="legendary-block block2">
-        <div class="legendary-cards">
-          ${this._renderCards(["villain", "henchman"])}
-        </div>
+        <div class="legendary-cards"></div>
       </div>
+
       <div class="legendary-block block3">
-        <div class="legendary-cards">
-          ${this._renderCards(["hero"])}
-        </div>
+        <div class="legendary-cards"></div>
       </div>
     </div>
   `;
     this._startRevealAndFlip();
   }
 
-  _refreshBlocksTwoAndThree() {
-    document.querySelector("block2").innerHTML = `
-      <div class="legendary-cards">
-        ${this._renderCards(["villain", "henchman"])}
-      </div>
-    `;
-    document.querySelector("block3").innerHTML = `
-      <div class="legendary-cards">
-        ${this._renderCards(["hero"])}
-      </div>
-    `;
+  _refreshBlocksTwoAndThree(block2List, block3List) {
+    const b2 = this.resultEl.querySelector(".block2 .legendary-cards");
+    const b3 = this.resultEl.querySelector(".block3 .legendary-cards");
+    if (b2) b2.innerHTML = this._renderCardsFrom(block2List);
+    if (b3) b3.innerHTML = this._renderCardsFrom(block3List);
   }
 
   _stopTimeouts() {
@@ -87,6 +84,7 @@ export class LegendaryEngine extends GameEngine {
   }
 
   _stopAnimations(cards) {
+    if (!cards || cards.length === 0) return;
     cards.forEach((el) => el.classList.remove("reveal", "flip"));
     void cards[0].offsetWidth; // trick to force reflow
   }
@@ -125,21 +123,28 @@ export class LegendaryEngine extends GameEngine {
 
     this._progress1Timer = setTimeout(() => {
       block1.classList.add("progress");
-      this._pickOtherCards();
+
+      // 1) calculer les cartes des blocs 2 & 3
+      const { block2, block3 } = this._pickOtherCards();
+
+      // 2) les afficher côté verso tout de suite
+      this._refreshBlocksTwoAndThree(block2, block3);
+
+      // 3) leur appliquer le reveal (cercle) puis les flipper plus tard
+      let otherCards = Array.from(
+        this.resultEl.querySelectorAll(
+          ".block2 .legendary-card, .block3 .legendary-card"
+        )
+      );
+      otherCards.forEach((el) => el.classList.add("reveal"));
+
       this._progress2Timer = new PauseableTimer(() => {
-        _refreshBlocksTwoAndThree();
-        otherCards = Array.from(
-          this.resultEl.querySelectorAll(
-            ".block2 .legendary-card, .block3 .legendary-card"
-          )
-        );
         otherCards.forEach((el, i) => {
-          const t = setTimeout(() => {
-            el.classList.add("flip");
-          }, i * between);
+          const t = setTimeout(() => el.classList.add("flip"), i * between);
           this._flipTimers.push(t);
         });
       }, progressDelay);
+
       this._attachHoverPause();
       this._progress2Timer.startTimer();
     }, revealDelay + totalFlipTime);
@@ -167,48 +172,44 @@ export class LegendaryEngine extends GameEngine {
     // no per‑card reload in Legendary—for now just do nothing
   }
 
-  _pickOtherCards(nbPlayers) {
-    let alwaysLed1, alwaysLed2;
-
-    let nbHeroes = this.selectedItems[1].nbHeroes(nbPlayers);
-    let nbVillains = this.selectedItems[1].nbVillains(nbPlayers);
-    let nbHenchmen = this.selectedItems[1].nbHenchmen(nbPlayers);
-
-    this.nbTwists = this.selectedItems[1].nbTwists(nbPlayers);
-    this.nbBystanders = this.selectedItems[1].nbBystanders(nbPlayers);
-
+  _pickOtherCards(nbPlayers = 4) {
     let pool = this.getPool();
 
-    if (this.selectedItems[0].alwaysLeads != null) {
-      alwaysLed1 = pool.find(
-        (card) => card.key === this.selectedItems[0].alwaysLeads
-      );
-      this.selectedItems.push(alwaysLed1);
-      if (alwaysLed1.type === "villain") {
-        nbVillains -= 1;
-      } else {
-        nbHenchmen -= 1;
-      }
-      pool = pool.filter((card) => card !== alwaysLed1);
-    }
-    if (this.selectedItems[1].alwaysLeads != null) {
-      alwaysLed2 = pool.find(
-        (card) => card.key === this.selectedItems[1].alwaysLeads
-      );
-      this.selectedItems.push(alwaysLed2);
-      if (alwaysLed2.type === "villain") {
-        nbVillains -= 1;
-      } else {
-        nbHenchmen -= 1;
-      }
-      pool = pool.filter((card) => card !== alwaysLed2);
-    }
+    const scheme = this.selectedItems.find((c) => c.type === "scheme");
+    const mastermind = this.selectedItems.find((c) => c.type === "mastermind");
 
-    this.pickRandom(pool, {
-      hero: nbHeroes,
-      villain: nbVillains,
-      henchman: nbHenchmen,
-    });
+    let nbHeroes = scheme?.nbHeroes(nbPlayers);
+    let nbVillains = scheme?.nbVillains(nbPlayers);
+    let nbHenchmen = scheme?.nbHenchmen(nbPlayers);
+
+    this.nbTwists = scheme?.nbTwists(nbPlayers);
+    this.nbBystanders = scheme?.nbBystanders(nbPlayers);
+
+    const takeAlwaysLeads = (card) => {
+      if (!card?.alwaysLeads) return null;
+      const found = pool.find((c) => c.key === card.alwaysLeads) || null;
+      if (!found) return null;
+      pool = pool.filter((c) => c !== found);
+      if (found.type === "villain") nbVillains -= 1;
+      else nbHenchmen -= 1;
+      return found;
+    };
+
+    const forced1 = takeAlwaysLeads(mastermind);
+    const forced2 = takeAlwaysLeads(scheme);
+
+    let block2 = [];
+    if (forced1) block2.push(forced1);
+    if (forced2) block2.push(forced2);
+
+    let picked;
+    [picked, pool] = this._pickType(pool, "villain", Math.max(0, nbVillains));
+    block2.push(...picked);
+    [picked, pool] = this._pickType(pool, "henchman", Math.max(0, nbHenchmen));
+    block2.push(...picked);
+    const block3 = this._pickType(pool, "hero", Math.max(0, nbHeroes))[0];
+
+    return { block2, block3 };
   }
 }
 
