@@ -245,6 +245,55 @@
     "cost": 8
   },
   {
+    "boxKey": "aeonsend_nameless",
+    "key": "agate_sangsue",
+    "name": "Agate sangsue",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_nameless",
+    "key": "marteau_en_fusion",
+    "name": "Marteau en fusion",
+    "type": "relic",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_nameless",
+    "key": "spirale_temporelle",
+    "name": "Spirale temporelle",
+    "type": "relic",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_nameless",
+    "key": "flamber",
+    "name": "Flamber",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_nameless",
+    "key": "radiance",
+    "name": "Radiance",
+    "type": "spell",
+    "cost": 8
+  },
+  {
+    "boxKey": "aeonsend_nameless",
+    "key": "la_marque_du_sage",
+    "name": "La marque du sage",
+    "type": "spell",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_nameless",
+    "key": "eclair_de_prophetie",
+    "name": "Éclair de prophétie",
+    "type": "spell",
+    "cost": 6
+  },
+  {
     "boxKey": "aeonsend_outcasts",
     "key": "sazite_de_duplication",
     "name": "Sazite de duplication",

@@ -66,6 +66,7 @@ ALL_GAMES: List[Game] = [
 AEONSEND_BOXES: List[Box] = [
     OriginalBox(AEONSEND),
     Box("depths", AEONSEND, "Les Profondeurs"),
+    Box("nameless", AEONSEND, "Les Sans-nom"),
     Box("outcasts", AEONSEND, "Les Parias"),
 ]
 
