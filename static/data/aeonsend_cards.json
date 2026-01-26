@@ -294,6 +294,197 @@
     "cost": 6
   },
   {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "pierre_de_sang",
+    "name": "Pierre de sang",
+    "type": "gem",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "minerai_de_la_breche",
+    "name": "Minerai de la brèche",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "diamant_inquietant",
+    "name": "Diamant inquiétant",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "lingot_erratique",
+    "name": "Lingot erratique",
+    "type": "gem",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "magnetite_congelee",
+    "name": "Magnétite congelée",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "bouquet_de_scories",
+    "name": "Bouquet de scories",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "verre_pyroclastique",
+    "name": "Verre pyroclastique",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "boussole_de_cairn",
+    "name": "Boussole de cairn",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "parchemin_du_conclave",
+    "name": "Parchemin du conclave",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "attrapeur_de_demons",
+    "name": "Attrapeur de démons",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "totem_de_mage",
+    "name": "Totem de mage",
+    "type": "relic",
+    "cost": 2
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "fetiche_primordial",
+    "name": "Fétiche primordial",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "gantelet_de_vorticite",
+    "name": "Gantelet de vorticité",
+    "type": "relic",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "aurore",
+    "name": "Aurore",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "carbonisation",
+    "name": "Carbonisation",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "fleche_celeste",
+    "name": "Flèche céleste",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "conjuration_des_oublies",
+    "name": "Conjuration des oubliés",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "champ_de_convection",
+    "name": "Champ de convection",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "cristallisation",
+    "name": "Cristallisation",
+    "type": "spell",
+    "cost": 8
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "equilibre",
+    "name": "Équilibre",
+    "type": "spell",
+    "cost": 7
+  },
+
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "torrent_ardent",
+    "name": "Torrent ardent",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "eclair_dechirant",
+    "name": "Éclair déchirant",
+    "type": "spell",
+    "cost": 4
+  },
+
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "meche",
+    "name": "Mèche",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "forge_nova",
+    "name": "Forge Nova",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "afflux_pyrotechnique",
+    "name": "Afflux pyrotechnique",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "retour_a_la_poussiere",
+    "name": "Retour à la poussière",
+    "type": "spell",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_war_eternal",
+    "key": "familier_imaginaire",
+    "name": "Familier imaginaire",
+    "type": "spell",
+    "cost": 3
+  },
+  {
     "boxKey": "aeonsend_outcasts",
     "key": "sazite_de_duplication",
     "name": "Sazite de duplication",
