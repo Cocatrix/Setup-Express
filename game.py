@@ -59,8 +59,6 @@ CHALLENGERS = Game("challengers", "Challengers!")
 LEGENDARY = Game("legendary", "Legendary")
 ALL_GAMES: List[Game] = [
     AEONSEND,
-    CHALLENGERS,
-    LEGENDARY,
 ]
 
 AEONSEND_BOXES: List[Box] = [
