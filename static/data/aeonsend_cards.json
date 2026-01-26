@@ -541,6 +541,83 @@
     "cost": 4
   },
   {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "element_extraterrestre",
+    "name": "Élément extraterrestre",
+    "type": "gem",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "berylite_hantee",
+    "name": "Bérylite hantée",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "pierre_de_douleur",
+    "name": "Pierre de douleur",
+    "type": "gem",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "cube_astral",
+    "name": "Cube astral",
+    "type": "relic",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "sphere_des_secrets",
+    "name": "Sphère des secrets",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "catalyseur",
+    "name": "Catalyseur",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "carboniser",
+    "name": "Carboniser",
+    "type": "spell",
+    "cost": 8
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "aura_de_reaction",
+    "name": "Aura de réaction",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "conduite_du_neant",
+    "name": "Conduite du néant",
+    "type": "spell",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "pyromancie",
+    "name": "Pyromancie",
+    "type": "spell",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_outer_dark",
+    "key": "calciner",
+    "name": "Calciner",
+    "type": "spell",
+    "cost": 5
+  },
+  {
     "boxKey": "aeonsend_outcasts",
     "key": "sazite_de_duplication",
     "name": "Sazite de duplication",
