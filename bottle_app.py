@@ -29,7 +29,7 @@ application = default_app()
 
 @route("/static/<filepath:path>")
 def server_static(filepath):
-    return static_file(filepath, root="/home/cocatrix/mysite/static")
+    return static_file(filepath, root="/home/setupexpress/Setup-Express/static")
 
 
 @route("/")
