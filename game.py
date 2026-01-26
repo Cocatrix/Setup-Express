@@ -68,6 +68,7 @@ AEONSEND_BOXES: List[Box] = [
     Box("depths", AEONSEND, "Les Profondeurs"),
     Box("nameless", AEONSEND, "Les Sans-nom"),
     Box("war_eternal", AEONSEND, "Guerre Éternelle"),
+    Box("void", AEONSEND, "Le Vide"),
     Box("outcasts", AEONSEND, "Les Parias"),
 ]
 

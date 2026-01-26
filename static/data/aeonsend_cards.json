@@ -485,6 +485,62 @@
     "cost": 3
   },
   {
+    "boxKey": "aeonsend_void",
+    "key": "scarabee_fossilise",
+    "name": "Scarabée fossilisé",
+    "type": "gem",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_void",
+    "key": "cle_dimensionnelle",
+    "name": "Clé dimensionnelle",
+    "type": "relic",
+    "cost": 8
+  },
+  {
+    "boxKey": "aeonsend_void",
+    "key": "cachet_de_l_eternite",
+    "name": "Cachet de l'éternité",
+    "type": "relic",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_void",
+    "key": "embrasement",
+    "name": "Embrasement",
+    "type": "spell",
+    "cost": 3
+  },
+  {
+    "boxKey": "aeonsend_void",
+    "key": "fulminer",
+    "name": "Fulminer",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_void",
+    "key": "feu_interieur",
+    "name": "Feu intérieur",
+    "type": "spell",
+    "cost": 2
+  },
+  {
+    "boxKey": "aeonsend_void",
+    "key": "resonance",
+    "name": "Résonance",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_void",
+    "key": "flechette_thermique",
+    "name": "Fléchette thermique",
+    "type": "spell",
+    "cost": 4
+  },
+  {
     "boxKey": "aeonsend_outcasts",
     "key": "sazite_de_duplication",
     "name": "Sazite de duplication",
