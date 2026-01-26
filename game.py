@@ -65,7 +65,7 @@ ALL_GAMES: List[Game] = [
 
 AEONSEND_BOXES: List[Box] = [
     OriginalBox(AEONSEND),
-    Box("parias", AEONSEND, "Les Parias"),
+    Box("outcasts", AEONSEND, "Les Parias"),
 ]
 
 CHALLENGERS_BOXES: List[Box] = [
