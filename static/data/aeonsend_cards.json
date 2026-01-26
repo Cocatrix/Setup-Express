@@ -189,6 +189,62 @@
     "cost": 7
   },
   {
+    "boxKey": "aeonsend_depths",
+    "key": "topaze_de_bannissement",
+    "name": "Topaze de bannissement",
+    "type": "gem",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_depths",
+    "key": "transmogrifieur",
+    "name": "Transmogrifieur",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_depths",
+    "key": "dynamo_de_vigueur",
+    "name": "Dynamo de vigueur",
+    "type": "relic",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_depths",
+    "key": "lien_du_vide",
+    "name": "Lien du vide",
+    "type": "spell",
+    "cost": 4
+  },
+  {
+    "boxKey": "aeonsend_depths",
+    "key": "combustion",
+    "name": "Combustion",
+    "type": "spell",
+    "cost": 5
+  },
+  {
+    "boxKey": "aeonsend_depths",
+    "key": "ombre_devorante",
+    "name": "Ombre dévorante",
+    "type": "spell",
+    "cost": 6
+  },
+  {
+    "boxKey": "aeonsend_depths",
+    "key": "faux_de_desintegration",
+    "name": "Faux de désintégration",
+    "type": "spell",
+    "cost": 7
+  },
+  {
+    "boxKey": "aeonsend_depths",
+    "key": "brasier_monstrueux",
+    "name": "Brasier monstrueux",
+    "type": "spell",
+    "cost": 8
+  },
+  {
     "boxKey": "aeonsend_outcasts",
     "key": "sazite_de_duplication",
     "name": "Sazite de duplication",
