@@ -22,9 +22,11 @@ def page_game(game, boxes):
     <div class="app-layout">
 
       <aside class="sidebar">
-        <h2>{SITE_NAME} :<br> {game.name}</h2>
-        <div class="boxes-container">
-          {tiles}
+        <div class="sidebar-scroll">
+          <h2>{SITE_NAME} :<br> {game.name}</h2>
+          <div class="boxes-container">
+            {tiles}
+          </div>
         </div>
       </aside>
 

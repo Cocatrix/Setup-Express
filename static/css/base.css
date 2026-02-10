@@ -31,6 +31,9 @@ h2,
   font-family: "Cinzel", serif;
 }
 
-html {
-  overflow-y: scroll; /* Always reserve space for scroll bar */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* 🔑 empêche le scroll global */
 }

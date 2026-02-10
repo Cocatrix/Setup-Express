@@ -62,13 +62,17 @@
 }
 
 .box-tile.highlight {
-  box-shadow: 0 0 0 4px rgba(255, 200, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 0 0 4px rgba(255, 200, 0, 0.7),
+    0 2px 8px rgba(0, 0, 0, 0.2);
   transform: scale(1.02);
   animation: pulse 1s ease-out infinite;
 }
 
 .app-layout {
   display: flex;
+  height: 100vh;
+  overflow: hidden;
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem;
@@ -81,18 +85,35 @@
   width: 310px;
   position: sticky;
   top: 1rem;
+  bottom: 1rem;
   background: #f9f9f9;
   border-radius: 0.5rem;
   padding: 0.5rem;
   flex-shrink: 0;
+  height: 100%;
 }
 
 .sidebar > h2 {
   margin-bottom: 0.5rem;
 }
 
+.sidebar-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem;
+  padding-bottom: 1.5rem;
+
+  align-items: center;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* vieux Edge / IE */
+}
+
 .main-content {
   flex: 1;
+  overflow: hidden;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,36 +129,49 @@
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-bottom: calc((300px - 180px) + 1rem);
+  overflow: visible;
+  padding-bottom: 1rem;
 }
 
 .sidebar .box-tile {
-  display: block;
-  width: auto;
-  transform-origin: top center;
-  transition: max-width 0.5s ease, max-height 0.5s ease, transform 0.2s ease,
-    box-shadow 0.2s ease;
-  transform-origin: top center;
+  display: inline-flex;
+  max-height: 175px;
+  max-width: 300px;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem auto;
+  background-color: #fff;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  z-index: 0;
 }
 
 .sidebar .box-tile img {
-  display: block;
-  height: 100%;
+  max-height: 175px;
   width: auto;
+  height: auto;
   object-fit: contain;
-  margin: 0 auto;
+  object-position: center;
 }
 
 .sidebar .box-tile:hover {
-  max-width: 310px;
-  max-height: 280px;
-  transform: none;
+  transform: scale(1.15);
+  z-index: 5;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
-
 #result .box-tile {
   height: auto !important;
   overflow: visible !important;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
 }
