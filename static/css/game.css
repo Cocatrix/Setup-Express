@@ -49,7 +49,7 @@
   filter: grayscale(0%);
 }
 
-@keyframes pulse {
+@keyframes pulse1 {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.7);
   }
@@ -66,7 +66,7 @@
     0 0 0 4px rgba(255, 200, 0, 0.7),
     0 2px 8px rgba(0, 0, 0, 0.2);
   transform: scale(1.02);
-  animation: pulse 1s ease-out infinite;
+  animation: pulse1 1s ease-out infinite;
 }
 
 .app-layout {
@@ -174,4 +174,39 @@
 
 .sidebar-scroll::-webkit-scrollbar {
   display: none; /* Chrome / Safari */
+}
+
+.scroll-indicator {
+  position: sticky;
+  bottom: 10px;
+  text-align: center;
+  font-size: 2.5rem;
+  pointer-events: none;
+  padding: 0.3rem;
+  width: 100%;
+  color: transparent; /* Texte transparent pour ne garder que l'ombre */
+  text-shadow: 0 0 6px rgba(200, 50, 50, 0.8); /* Rouge profond (comme l'icône) */
+  animation: pulse2 1.5s infinite ease-in-out; /* Animation plus douce */
+  background: linear-gradient(to top, rgba(249, 249, 249, 0.9), transparent);
+  transition: opacity 0.3s ease;
+  display: none;
+}
+
+@keyframes pulse2 {
+  0% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  } /* Légère montée */
+  100% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+}
+
+.scroll-indicator.hidden {
+  display: none !important; /* Suppression complète */
 }

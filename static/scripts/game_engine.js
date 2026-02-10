@@ -33,7 +33,7 @@ export class GameEngine {
 
   getPool() {
     const selectedKeys = Array.from(
-      document.querySelectorAll(this.boxSelector + ".selected")
+      document.querySelectorAll(this.boxSelector + ".selected"),
     ).map((el) => el.dataset.value);
     return selectedKeys.flatMap((k) => this.itemsByBox[k] || []);
   }
@@ -51,6 +51,26 @@ export class GameEngine {
         return this.reloadItem(btn);
       }
     });
+
+    const sidebarScroll = document.querySelector(".sidebar-scroll");
+    const scrollIndicator = document.getElementById("scrollIndicator");
+
+    if (sidebarScroll && scrollIndicator) {
+      const needsScroll =
+        sidebarScroll.scrollHeight > sidebarScroll.clientHeight;
+      if (needsScroll) {
+        setTimeout(() => {
+          scrollIndicator.style.display = "block";
+        }, 1500);
+        let hasScrolled = false;
+        sidebarScroll.addEventListener("scroll", () => {
+          if (!hasScrolled) {
+            scrollIndicator.classList.add("hidden");
+            hasScrolled = true;
+          }
+        });
+      }
+    }
   }
 
   updateResult() {
