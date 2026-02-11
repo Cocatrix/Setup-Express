@@ -19,7 +19,7 @@ export class AeonsendEngine extends GameEngine {
       this.selectedItems
         .filter((item) => item.type === type)
         .slice()
-        .sort((a, b) => a.cost - b.cost)
+        .sort((a, b) => a.cost - b.cost),
     );
     this.resultEl.innerHTML = `
       <div class="aeon-grid">
@@ -34,8 +34,8 @@ export class AeonsendEngine extends GameEngine {
     const type = cardTile.querySelector(".card-label").classList.contains("gem")
       ? "gem"
       : cardTile.querySelector(".card-label").classList.contains("relic")
-      ? "relic"
-      : "spell";
+        ? "relic"
+        : "spell";
 
     const idx = this.selectedItems.findIndex((c) => c.key === clickedKey);
     if (idx === -1) return;
@@ -43,7 +43,7 @@ export class AeonsendEngine extends GameEngine {
     const usedKeys = new Set(this.selectedItems.map((c) => c.key));
 
     const sameTypeCards = this.getPool().filter(
-      (c) => c.type === type && !usedKeys.has(c.key)
+      (c) => c.type === type && !usedKeys.has(c.key),
     );
     if (sameTypeCards.length === 0) return;
     const newItem =
@@ -72,7 +72,7 @@ export class AeonsendEngine extends GameEngine {
 
       let ti = 0;
       this.selectedItems = this.selectedItems.map((c) =>
-        c.type === type ? typeItems[ti++] : c
+        c.type === type ? typeItems[ti++] : c,
       );
 
       const newOrder = typeItems.map((c) => c.key);
