@@ -9,7 +9,7 @@
 
 .card-tile {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   min-height: 280px;
   max-width: 200px;
   aspect-ratio: 63 / 88;
