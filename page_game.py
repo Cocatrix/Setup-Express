@@ -27,7 +27,7 @@ def page_game(game, boxes):
           <div class="boxes-container">
             {tiles}
           </div>
-          <div class="scroll-indicator" id="scrollIndicator">↓</div>
+          <div class="scroll-indicator" id="scrollIndicator">↓↓↓</div>
         </div>
       </aside>
 
