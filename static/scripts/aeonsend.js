@@ -50,6 +50,7 @@ export class AeonsendEngine extends GameEngine {
       sameTypeCards[Math.floor(Math.random() * sameTypeCards.length)];
 
     const back = cardTile.querySelector(".card-back");
+    back.querySelector("img").src = ""; // Forcing blank image if delay instead of seeing old image
     back.querySelector("img").src = newItem.imageUrl;
     back.querySelector("img").alt = newItem.name;
     const backLabel = back.querySelector(".card-label");
