@@ -1,18 +1,29 @@
+#result {
+  align-self: stretch;
+  width: 100%;
+}
+
 .aeon-grid {
   display: grid;
   grid-template-columns: repeat(3, auto);
   justify-content: center;
 
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 0;
+  width: 100%;
 }
 
 .card-tile {
   position: relative;
   overflow: visible;
-  min-height: 280px;
-  max-width: 200px;
   aspect-ratio: 63 / 88;
+  /* La grille est en colonnes `auto` : éviter une largeur dépendante de `100%`
+     pour ne pas risquer un collapse (cartes invisibles). */
+  width: clamp(80px, calc((100vh - 6rem) * 0.2386), 1000px);
+  max-width: 100%;
+  justify-self: center;
+  min-height: 0;
+  max-width: 100%;
   border-radius: 0.5rem;
   transition: transform 0.3s ease;
   perspective: 1000px;
